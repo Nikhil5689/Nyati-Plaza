@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Nyati Plaza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #002F67;
+            --accent: #E5B200;
+            --gradient: linear-gradient(135deg, #002F67 0%, #004a8f 50%, #0070b0 100%);
+            --text-dark: #0F1724;
+            --text-light: #ffffff;
+            --bg-light: #ffffff;
+            --bg-soft: #FAFBFD;
+            --shadow: 0 10px 30px rgba(0, 47, 103, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 47, 103, 0.15);
+            --radius: 20px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0, 47, 103, 0.08);
+        }
+        
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-gradient {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .hero-section {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(0, 47, 103, 0.5), rgba(0, 47, 103, 0.5)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&h=700&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 8px;
+        }
+        
+        .filter-btn.active {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 47, 103, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: white;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 300px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Header -->
+    <header class="sticky-header glass-header" id="mainHeader">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-24 h-15 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl font-black text-[--primary]">NP</span>
+                    </div>
+                </div>
+                
+                <nav class="hidden lg:flex items-center space-x-10">
+                   <a href="index.html" class="nav-link">Home</a>
+                    <a href="brands.html" class="nav-link">Brands</a> 
+                    <a href="dine.html" class="nav-link">Dine</a>
+                    <a href="entertainment.html" class="nav-link">Entertainment</a>
+                     <a href="gallery.html" class="nav-link">Gallery</a>
+                    <a href="visitnyati.html" class="nav-link">Visit Nyati</a>
+                </nav>
+                
+                <div class="flex items-center space-x-6">
+                    <button class="text-gray-700 hover:text-[--primary]">
+                        <i class="fas fa-search text-xl"></i>
+                    </button>
+                    <button class="btn-gradient">Lease Space</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="text-center">
+            <h1 class="text-6xl font-black mb-4">Moments That Define Nyati Plaza</h1>
+            <p class="text-2xl mb-8">Explore our architectural beauty and memorable events</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 bg-gradient-to-b from-white to-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black mb-4">Filter Gallery</h2>
+            </div>
+            <div class="flex flex-wrap justify-center">
+                <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+                <button class="filter-btn" onclick="filterGallery('architecture', this)">🏗️ Architecture</button>
+                <button class="filter-btn" onclick="filterGallery('events', this)">🎉 Events</button>
+                <button class="filter-btn" onclick="filterGallery('dining', this)">🍽️ Dining</button>
+                <button class="filter-btn" onclick="filterGallery('fashion', this)">👗 Fashion</button>
+                <button class="filter-btn" onclick="filterGallery('festivities', this)">✨ Festivities</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="gallery-grid">
+                <!-- Architecture -->
+                <div class="gallery-item" data-category="architecture">
+                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=300&fit=crop" alt="Atrium Interiors">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Atrium Interiors</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="architecture">
+                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=300&fit=crop" alt="Modern Design">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Modern Design</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="architecture">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" alt="Entrance Hall">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Entrance Hall</h3>
+                    </div>
+                </div>
+
+                <!-- Events -->
+                <div class="gallery-item" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=300&fit=crop" alt="Diwali Celebration">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Diwali Celebration</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" alt="New Year Event">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">New Year Event</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop" alt="Summer Festival">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Summer Festival</h3>
+                    </div>
+                </div>
+
+                <!-- Dining -->
+                <div class="gallery-item" data-category="dining">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop" alt="Fine Dining">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Fine Dining</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="dining">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop" alt="Café Ambience">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Café Ambience</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="dining">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561404?w=400&h=300&fit=crop" alt="Restaurant Interior">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Restaurant Interior</h3>
+                    </div>
+                </div>
+
+                <!-- Fashion -->
+                <div class="gallery-item" data-category="fashion">
+                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=300&fit=crop" alt="Fashion Display">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Fashion Display</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="fashion">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=300&fit=crop" alt="Boutique">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Boutique</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="fashion">
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=300&fit=crop" alt="Luxury Brands">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Luxury Brands</h3>
+                    </div>
+                </div>
+
+                <!-- Festivities -->
+                <div class="gallery-item" data-category="festivities">
+                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop" alt="Festival Decor">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Festival Decor</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="festivities">
+                    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop" alt="Celebration">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Celebration</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="festivities">
+                    <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=300&fit=crop" alt="Special Event">
+                    <div class="gallery-item-overlay">
+                        <h3 class="text-lg font-bold">Special Event</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
+        <div class="container mx-auto px-6 text-center text-white">
+            <h2 class="text-5xl font-black mb-6">Share Your Experience</h2>
+            <p class="text-2xl mb-8">Tag us with #NyatiPlaza on social media</p>
+            <button class="btn-gradient">
+                <i class="fas fa-camera mr-2"></i>Share Your Photos
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="brands.html" class="hover:text-white">Brands</a></li>
+                        <li><a href="dine.html" class="hover:text-white">Dining</a></li>
+                        <li><a href="entertainment.html" class="hover:text-white">Entertainment</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i>+91 1234 567 890</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@nyatiplaza.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Pune, India</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Hours</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Mon-Thu: 10 AM - 10 PM</li>
+                        <li>Fri-Sun: 10 AM - 11 PM</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-gray-400 border-t border-gray-700 pt-6">
+                <p>© 2025 Nyati Plaza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterGallery(category, button) {
+            const items = document.querySelectorAll('.gallery-item');
+            
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 10);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 300);
+                }
+            });
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+
+        // Header scroll effect
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.paddingTop = '0.5rem';
+                header.style.paddingBottom = '0.5rem';
+            } else {
+                header.style.paddingTop = '1rem';
+                header.style.paddingBottom = '1rem';
+            }
+        });
+    </script>
+</body>
+</html>
