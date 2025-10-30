@@ -159,7 +159,7 @@
         }
         
         .carousel-item {
-            flex-shrink-0 ;
+            flex-shrink:0;
             width: 300px;
             border-radius: var(--radius);
             overflow: hidden;
@@ -238,306 +238,423 @@
     </section>
 
     <!-- Floor Directory -->
-    <section id="directory" class="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black mb-4">Floor Directory</h2>
-                <p class="text-xl text-gray-600">Browse brands by floor</p>
-            </div>
+<script src="https://cdn.tailwindcss.com"></script>
+<section id="directory" class="py-24 bg-gradient-to-b from-white via-gray-50 to-[#f7f9fb]">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="text-center mb-12">
+      <h2 class="text-5xl font-black mb-2 text-[#002F67] tracking-tight">Floor Directory</h2>
+      <p class="text-xl text-gray-600">Explore all brands by floor</p>
+    </div>
 
-            <!-- Tab Navigation -->
-            <div class="flex flex-wrap justify-center mb-12">
-                <button class="tab-btn active" onclick="switchFloor('ground', this)">Ground Floor</button>
-                <button class="tab-btn" onclick="switchFloor('first', this)">1st Floor</button>
-                <button class="tab-btn" onclick="switchFloor('second', this)">2nd Floor</button>
-            </div>
+    <div class="flex justify-center gap-6 mb-12">
+      <button class="tab-btn active" onclick="switchFloor('ground', this)">Ground Floor</button>
+      <button class="tab-btn" onclick="switchFloor('first', this)">1st Floor</button>
+      <button class="tab-btn" onclick="switchFloor('second', this)">2nd Floor</button>
+    </div>
 
-            <!-- Ground Floor -->
-            <div id="ground" class="floor-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">TREM</h3>
-                            <span class="text-2xl">🏢</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Experience Center</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 1</p>
-                        <a href="tel:9714077721" class="text-[--accent] font-semibold hover:underline">9714077721</a>
-                    </div>
+    <!-- Ground Floor -->
+    <div id="ground" class="floor-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="" alt="TREM" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">TREM</h3>
+        <p class="text-gray-700 mb-1 capitalize">Experience center</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9714077721</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 1</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Candere</h3>
-                            <span class="text-2xl">💎</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Jewellery by Kalyan</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 2A</p>
-                        <a href="tel:8983239243" class="text-[--accent] font-semibold hover:underline">8983239243</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/37.png" alt="Jivika - Gemma Geminus" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Jivika - Gemma Geminus</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9028954014</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 3</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Blue Stone</h3>
-                            <span class="text-2xl">💎</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Fine Jewellery</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 2B</p>
-                        <a href="tel:8655371365" class="text-[--accent] font-semibold hover:underline">8655371365</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/55.png" alt="Titan" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Titan</h3>
+        <p class="text-gray-700 mb-1 lowercase">watches</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8180055329</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 5</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Titan</h3>
-                            <span class="text-2xl">⌚</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Watches & Accessories</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 5</p>
-                        <a href="tel:8180055329" class="text-[--accent] font-semibold hover:underline">8180055329</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/38.png" alt="Mudrika Womens Ethnic Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Mudrika Womens Ethnic Wear</h3>
+        <p class="text-gray-700 mb-1 capitalize">Women's ethnic</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8010714868</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 7, 8</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Lenskart</h3>
-                            <span class="text-2xl">👓</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Eyewear</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 09</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/16.png" alt="Food Junction & Barcode" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Food Junction & Barcode</h3>
+        <p class="text-gray-700 mb-1 capitalize">Fashion apparel</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:-</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Baggit</h3>
-                            <span class="text-2xl">👜</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Premium Bags</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 26</p>
-                        <a href="tel:7397805888" class="text-[--accent] font-semibold hover:underline">7397805888</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/63.png" alt="Reliance Fashion World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Reliance Fashion World</h3>
+        <p class="text-gray-700 mb-1 capitalize">Apparel</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:-</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Mama Earth</h3>
-                            <span class="text-2xl">🧴</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Cosmetics & Beauty</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 32</p>
-                        <a href="tel:9022863768" class="text-[--accent] font-semibold hover:underline">9022863768</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="https://via.placeholder.com/150x80?text=Candy+Floss" alt="Candy Floss" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Candy Floss</h3>
+        <p class="text-gray-700 mb-1 lowercase">confectionary</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8855003707</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 19</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Indian Terrain</h3>
-                            <span class="text-2xl">👕</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Apparel</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 36</p>
-                        <a href="tel:9423646947" class="text-[--accent] font-semibold hover:underline">9423646947</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/6.png" alt="Hy Fashion" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Hy Fashion</h3>
+        <p class="text-gray-700 mb-1 capitalize">Women's ethnic</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8799992174</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 20</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">LivSpace</h3>
-                            <span class="text-2xl">🏠</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Home Furnishing</p>
-                        <p class="text-sm text-gray-500 mb-3">Shop 41</p>
-                        <a href="tel:8047759151" class="text-[--accent] font-semibold hover:underline">8047759151</a>
-                    </div>
-                </div>
-            </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/17.png" alt="VR Mart" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">VR Mart</h3>
+        <p class="text-gray-700 mb-1 lowercase">mini grocery/ departmental store</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 23</span>
+      </div>
 
-            <!-- 1st Floor -->
-            <div id="first" class="floor-content hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">McDonald's</h3>
-                            <span class="text-2xl">🍔</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Fast Food</p>
-                        <p class="text-sm text-gray-500 mb-3">1st Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/56.png" alt="Baggit" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Baggit</h3>
+        <p class="text-gray-700 mb-1 lowercase">accessories</p>
+        <p class="text-sm text-gray-500 mb-1">📞 7397805888</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 26</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Miniso</h3>
-                            <span class="text-2xl">🎁</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Lifestyle & Accessories</p>
-                        <p class="text-sm text-gray-500 mb-3">1st Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="https://via.placeholder.com/150x80?text=Silver+and+Pearl" alt="Silver and Pearl" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Silver and Pearl</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 7397805888</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 27</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Cotton Culture</h3>
-                            <span class="text-2xl">👗</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Women's Wear</p>
-                        <p class="text-sm text-gray-500 mb-3">1st Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/21.png" alt="Aden Perfume" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Aden Perfume</h3>
+        <p class="text-gray-700 mb-1 lowercase">perfume</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 28</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Rich Infinity Salon</h3>
-                            <span class="text-2xl">💇</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Salon & Spa</p>
-                        <p class="text-sm text-gray-500 mb-3">1st Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/49.png" alt="Palmonas" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Palmonas</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 7558734508</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 29</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Vision World</h3>
-                            <span class="text-2xl">👓</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Eyewear</p>
-                        <p class="text-sm text-gray-500 mb-3">1st Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/47.png" alt="Tuanz" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Tuanz</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 7620093221</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 30</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Elix Lounge</h3>
-                            <span class="text-2xl">☕</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Café & Lounge</p>
-                        <p class="text-sm text-gray-500 mb-3">1st Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
-                </div>
-            </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/19.png" alt="Ajmal" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Ajmal</h3>
+        <p class="text-gray-700 mb-1 lowercase">perfume</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8411891959</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 31</span>
+      </div>
 
-            <!-- 2nd Floor -->
-            <div id="second" class="floor-content hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">City Pride Theatre</h3>
-                            <span class="text-2xl">🎬</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Cinema</p>
-                        <p class="text-sm text-gray-500 mb-3">2nd Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/54.png" alt="Mama Earth" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Mama Earth</h3>
+        <p class="text-gray-700 mb-1 lowercase">cosmetics</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9022863768</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 32</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">VR Play & Party</h3>
-                            <span class="text-2xl">🎮</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Gaming & Entertainment</p>
-                        <p class="text-sm text-gray-500 mb-3">2nd Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/58.png" alt="Indian Terrain" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Indian Terrain</h3>
+        <p class="text-gray-700 mb-1 capitalize">Apparel</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9423646947</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 36</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Tealogy</h3>
-                            <span class="text-2xl">🍵</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Tea & Café</p>
-                        <p class="text-sm text-gray-500 mb-3">2nd Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="https://via.placeholder.com/150x80?text=Royal+Imitation" alt="Royal Imitation Jewellry" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Royal Imitation Jewellry</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8205786872</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 37A</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Chicago Pizza</h3>
-                            <span class="text-2xl">🍕</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Italian Restaurant</p>
-                        <p class="text-sm text-gray-500 mb-3">2nd Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="https://via.placeholder.com/150x80?text=PNG+Jewellery" alt="PNG Jewellery" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">PNG Jewellery</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 39</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Buzzy Inks</h3>
-                            <span class="text-2xl">🎨</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Tattoo Studio</p>
-                        <p class="text-sm text-gray-500 mb-3">2nd Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/50.png" alt="LivSpace" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">LivSpace</h3>
+        <p class="text-gray-700 mb-1 lowercase">Home furnishing</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8047759151</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 41</span>
+      </div>
 
-                    <div class="brand-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-[--primary]">Delhi Treats</h3>
-                            <span class="text-2xl">🍛</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">Indian Cuisine</p>
-                        <p class="text-sm text-gray-500 mb-3">2nd Floor</p>
-                        <a href="tel:9876543210" class="text-[--accent] font-semibold hover:underline">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/51.png" alt="Candere by Kalyan Jewellers" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Candere by Kalyan Jewellers</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8983239243</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 2A</span>
+      </div>
 
-    <!-- Featured Boutiques Carousel -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black mb-4">Featured Boutiques</h2>
-                <p class="text-xl text-gray-600">Experience the latest trends in fashion, jewellery, and lifestyle</p>
-            </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/53.png" alt="Blue Stone" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Blue Stone</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8655371365</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 2B</span>
+      </div>
 
-            <div class="carousel-container px-4">
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=300&fit=crop" alt="Fashion">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Premium Fashion</h3>
-                        <p class="text-sm text-gray-600">Latest collections</p>
-                    </div>
-                </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/35.png" alt="Stylox Mens Apparels" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Stylox Mens Apparels</h3>
+        <p class="text-gray-700 mb-1 capitalize">Apparel</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9881196621</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 34A</span>
+      </div>
 
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop" alt="Jewellery">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Fine Jewellery</h3>
-                        <p class="text-sm text-gray-600">Timeless elegance</p>
-                    </div>
-                </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/27.png" alt="Candy World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Candy World</h3>
+        <p class="text-gray-700 mb-1 capitalize">Cosmetics</p>
+        <p class="text-sm text-gray-500 mb-1">📞 7900329560</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- Kiosk-4A</span>
+      </div>
 
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=300&fit=crop" alt="Accessories">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Accessories</h3>
-                        <p class="text-sm text-gray-600">Complete your look</p>
-                    </div>
-                </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/3.png" alt="Relax Zone" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Relax Zone</h3>
+        <p class="text-gray-700 mb-1 lowercase">Leisure</p>
+        <p class="text-sm text-gray-500 mb-1">📞 7020519560</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- Kiosk-5B</span>
+      </div>
 
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=300&fit=crop" alt="Lifestyle">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Lifestyle</h3>
-                        <p class="text-sm text-gray-600">Modern living</p>
-                    </div>
-                </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/32.png" alt="Upgrade India Interior" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Upgrade India Interior</h3>
+        <p class="text-gray-700 mb-1 lowercase">Leisure</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- Kiosk- 4C</span>
+      </div>
 
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1512201078372-9c6b2a0d528a?w=400&h=300&fit=crop" alt="Luxury">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Luxury Brands</h3>
-                        <p class="text-sm text-gray-600">Exclusive collections</p>
-                    </div>
-                </div>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/42.png" alt="Lenskart" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Lenskart</h3>
+        <p class="text-gray-700 mb-1 lowercase">Leisure</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 09</span>
+      </div>
 
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400&h=300&fit=crop" alt="Beauty">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Beauty & Wellness</h3>
-                        <p class="text-sm text-gray-600">Self-care essentials</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/24.png" alt="Aditya Chaat Bazaar" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-[#002F67] mb-1">Aditya Chaat Bazaar</h3>
+        <p class="text-gray-700 mb-1 lowercase">Leisure</p>
+        <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- na</span>
+      </div>
+    </div>
+
+    <!-- 1st Floor -->
+    <div id="first" class="floor-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      <div class="brand-card  rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="" alt="TREM" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">TREM</h3>
+        <p class="text-gray-700 mb-1 capitalize">Experience center</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9714077721</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 101 to 106</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/33.png" alt="JC Footwear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">JC Footwear</h3>
+        <p class="text-gray-700 mb-1 lowercase">footwear</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9657071708</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 110</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/60.png" alt="W & Aurelia" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">W & Aurelia</h3>
+        <p class="text-gray-700 mb-1 lowercase">women's ethnic</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8806673666</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 111</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/10.png" alt="Ajmera Fashion" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Ajmera Fashion</h3>
+        <p class="text-gray-700 mb-1 lowercase">women's ethnic</p>
+        <p class="text-sm text-gray-500 mb-1">📞 8806673666</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 113</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/36.png" alt="Cuddles Kids Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Cuddles Kids Wear</h3>
+        <p class="text-gray-700 mb-1 lowercase">kids wear</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 120</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/4.png" alt="Miniso" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Miniso</h3>
+        <p class="text-gray-700 mb-1 lowercase">lifestyle product</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9156324843</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 122</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/1.png" alt="Artastic" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Artastic</h3>
+        <p class="text-gray-700 mb-1 lowercase">stationary</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9657682215</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 126</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="" alt="Mobile Cover House" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Mobile Cover House</h3>
+        <p class="text-gray-700 mb-1 lowercase">fashion</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 129</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/46.png" alt="Glamorous - Womens Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Glamorous - Womens Wear</h3>
+        <p class="text-gray-700 mb-1 lowercase">women's ethnic</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9665851237</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 130</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/40.png" alt="Swapnagandha Artificial Jewellery and Jute Bags" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Swapnagandha Artificial Jewellery and Jute Bags</h3>
+        <p class="text-gray-700 mb-1 lowercase">fashion accessories</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9421740248</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 132</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/31.png" alt="Aurgat" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Aurgat</h3>
+        <p class="text-gray-700 mb-1 lowercase">jewellery</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9175907825</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 133</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/11.png" alt="Rich Infinity Salon" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Rich Infinity Salon</h3>
+        <p class="text-gray-700 mb-1 lowercase">salon</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9988835909</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 135, 136</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/52.png" alt="Lifesta" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Lifesta</h3>
+        <p class="text-gray-700 mb-1 capitalize">Retail</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 118</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="assets/logos/41.png" alt="Vision World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-pink-700 mb-1">Vision World</h3>
+        <p class="text-gray-700 mb-1 capitalize">Retail</p>
+        <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 131</span>
+      </div>
+    </div>
+
+    <!-- 2nd Floor -->
+    <div id="second" class="floor-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="assets/logos/7.png" alt="Buzzy Inks Tattoo Studio" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">Buzzy Inks Tattoo Studio</h3>
+        <p class="text-gray-700 mb-1 lowercase">tattoo</p>
+        <p class="text-sm text-gray-500 mb-1">📞 9860038601</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 210</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="assets/logos/61.png" alt="City Pride" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">City Pride</h3>
+        <p class="text-gray-700 mb-1 lowercase">entertainment</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 1</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="assets/logos/9.png" alt="VR play and Party" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">VR play and Party</h3>
+        <p class="text-gray-700 mb-1 lowercase">entertainment</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 211</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="assets/logos/2.png" alt="Delhi Treat" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">Delhi Treat</h3>
+        <p class="text-gray-700 mb-1 capitalize">Food Court</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- QSR 5</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="assets/logos/12.png" alt="Chicago pizza" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">Chicago pizza</h3>
+        <p class="text-gray-700 mb-1 capitalize">Food Court</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 203</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="" alt="Nashta Express" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">Nashta Express</h3>
+        <p class="text-gray-700 mb-1 capitalize">Food Court</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- QSR6</span>
+      </div>
+
+      <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
+        <img src="assets/logos/23.png" alt="Mak o Mak" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <h3 class="font-bold text-xl text-orange-700 mb-1">Mak o Mak</h3>
+        <p class="text-gray-700 mb-1 capitalize">Food Court</p>
+        <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- kiosk 1-C</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function switchFloor(floor, btn) {
+    document.querySelectorAll('.floor-content').forEach(el => el.classList.add('hidden'));
+    document.getElementById(floor).classList.remove('hidden');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+<style>
+  .tab-btn {
+    @apply px-6 py-2 rounded font-semibold border border-[#002F67] text-[#002F67] bg-white transition-colors;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    @apply bg-[#002F67] text-white;
+  }
+</style>
+
 
     <!-- CTA Section -->
     <section class="py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
