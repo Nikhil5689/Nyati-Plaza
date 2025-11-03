@@ -186,33 +186,82 @@
 <body class="bg-white text-gray-900">
 
     <!-- Header -->
-    <header class="sticky-header glass-header" id="mainHeader">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-24 h-15 rounded-xl flex items-center justify-center">
-                        <span class="text-2xl font-black text-[--primary]">NP</span>
-                    </div>
-                </div>
-                
-                <nav class="hidden lg:flex items-center space-x-10">
-                   <a href="index.html" class="nav-link">Home</a>
-                    <a href="brands.html" class="nav-link">Brands</a> 
-                    <a href="dine.html" class="nav-link">Dine</a>
-                    <a href="entertainment.html" class="nav-link">Entertainment</a>
-                     <a href="gallery.html" class="nav-link">Gallery</a>
-                    <a href="visitnyati.html" class="nav-link">Visit Nyati</a>
-                </nav>
-                
-                <div class="flex items-center space-x-6">
-                    <button class="text-gray-700 hover:text-[--primary]">
-                        <i class="fas fa-search text-xl"></i>
-                    </button>
-                    <button class="btn-gradient">Lease Space</button>
-                </div>
-            </div>
+    <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
+  <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3 flex-shrink-0">
+        <div class="w-36 md:w-40 flex items-center justify-center">
+          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
         </div>
-    </header>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
+        <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Home</a>
+        <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
+        <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Dine</a>
+        <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
+        <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
+        <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
+      </nav>
+
+      <!-- Header Buttons & Mobile Toggle -->
+      <div class="flex items-center space-x-3 sm:space-x-5">
+        <button class="text-[#002F67] hover:text-[#E5B200] transition">
+          <i class="fas fa-search text-lg md:text-xl"></i>
+        </button>
+        <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
+          <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
+    <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
+      <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
+      <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
+      <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
+      <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
+      <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
+      <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
+      <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    if (mobileMenuBtn && mobileMenu && menuIcon) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('fa-bars');
+        menuIcon.classList.toggle('fa-times');
+      });
+    }
+
+    // ✅ Fix scrolling issue by ensuring no overflow restrictions remain
+    document.body.style.overflowY = 'auto';
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.height = 'auto';
+    document.documentElement.style.height = 'auto';
+
+    // ✅ Add spacing below navbar so content is visible and scrollable
+    const header = document.getElementById('mainHeader');
+    if (header) {
+      const headerHeight = header.offsetHeight;
+      document.body.style.paddingTop = headerHeight + 'px';
+    }
+  });
+</script>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -226,167 +275,187 @@
     </section>
 
     <!-- Entertainment Categories -->
-    <section id="entertainment" class="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black mb-4">Entertainment Categories</h2>
-                <p class="text-xl text-gray-600">Discover endless fun and excitement</p>
-            </div>
+    
+<section id="city-pride-theatre" class="relative py-24 bg-gradient-to-b from-[#f8fafc] to-white overflow-hidden">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl font-black mb-4 text-[#002F67] tracking-tight">City Pride Theatre</h2>
+      <p class="text-xl text-gray-600">Immerse yourself in cinematic luxury and comfort</p>
+    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- City Pride Theatre -->
-                <div class="entertainment-card">
-                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=300&fit=crop" alt="City Pride Theatre">
-                    <div class="entertainment-card-content">
-                        <div class="entertainment-icon">🎬</div>
-                        <h3 class="text-2xl font-bold mb-3 text-[--primary]">City Pride Theatre</h3>
-                        <p class="text-gray-600 mb-4">Experience blockbuster movies in luxury comfort with state-of-the-art sound and projection.</p>
-                        <button class="btn-gradient w-full">Book Tickets</button>
-                    </div>
-                </div>
-
-                <!-- VR Play & Party -->
-                <div class="entertainment-card">
-                    <img src="https://images.unsplash.com/photo-1535016120754-fd45c1d54fce?w=400&h=300&fit=crop" alt="VR Play & Party">
-                    <div class="entertainment-card-content">
-                        <div class="entertainment-icon">🎮</div>
-                        <h3 class="text-2xl font-bold mb-3 text-[--primary]">VR Play & Party</h3>
-                        <p class="text-gray-600 mb-4">Immerse yourself in virtual reality gaming and interactive entertainment experiences.</p>
-                        <button class="btn-gradient w-full">Explore</button>
-                    </div>
-                </div>
-
-                <!-- Buzzy Inks Tattoo -->
-                <div class="entertainment-card">
-                    <img src="https://images.unsplash.com/photo-1598808503676-c92cc56de511?w=400&h=300&fit=crop" alt="Buzzy Inks">
-                    <div class="entertainment-card-content">
-                        <div class="entertainment-icon">🎨</div>
-                        <h3 class="text-2xl font-bold mb-3 text-[--primary]">Buzzy Inks Tattoo</h3>
-                        <p class="text-gray-600 mb-4">Professional tattoo studio with expert artists creating custom designs and artwork.</p>
-                        <button class="btn-gradient w-full">Book Appointment</button>
-                    </div>
-                </div>
-
-                <!-- Kids Play Zone -->
-                <div class="entertainment-card">
-                    <img src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=400&h=300&fit=crop" alt="Kids Play Zone">
-                    <div class="entertainment-card-content">
-                        <div class="entertainment-icon">🎠</div>
-                        <h3 class="text-2xl font-bold mb-3 text-[--primary]">Kids Play Zone</h3>
-                        <p class="text-gray-600 mb-4">Safe and fun play area for children with interactive games and activities.</p>
-                        <button class="btn-gradient w-full">Learn More</button>
-                    </div>
-                </div>
-            </div>
+    <!-- Image Gallery -->
+    <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 group">
+      <!-- Card 1 -->
+      <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500">
+        <img src="assets/Images/3.png" alt="City Pride Theatre" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+          <h3 class="text-2xl font-bold text-white mb-2">Ultra-Modern Screens</h3>
+          <p class="text-gray-200 text-sm">Experience cutting-edge sound and picture clarity.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Events Banner -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black mb-4">Upcoming Events</h2>
-                <p class="text-xl text-gray-600">Seasonal celebrations and special experiences</p>
-            </div>
-
-            <div class="carousel-container px-4">
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=300&fit=crop" alt="Diwali Celebration">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Diwali Celebration</h3>
-                        <p class="text-sm text-gray-600">Festival of lights with special offers and entertainment</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" alt="New Year Bash">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">New Year Bash</h3>
-                        <p class="text-sm text-gray-600">Ring in the new year with exclusive events</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop" alt="Summer Festival">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Summer Festival</h3>
-                        <p class="text-sm text-gray-600">Beat the heat with cool entertainment</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop" alt="Fashion Week">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Fashion Week</h3>
-                        <p class="text-sm text-gray-600">Latest trends and designer showcases</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop" alt="Music Festival">
-                    <div class="carousel-item-content">
-                        <h3 class="font-bold text-lg mb-2">Music Festival</h3>
-                        <p class="text-sm text-gray-600">Live performances and concerts</p>
-                    </div>
-                </div>
-            </div>
+      <!-- Card 2 -->
+      <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500">
+        <img src="assets/Images/1 (1).png" alt="City Pride Lounge" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+          <h3 class="text-2xl font-bold text-white mb-2">Luxury Lounges</h3>
+          <p class="text-gray-200 text-sm">Relax before your show in style and comfort.</p>
         </div>
-    </section>
+      </div>
 
+      <!-- Card 3 -->
+      <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500">
+        <img src="assets/Images/IMG_3248.JPG" alt="City Pride Concessions" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+          <h3 class="text-2xl font-bold text-white mb-2">Premium Concessions</h3>
+          <p class="text-gray-200 text-sm">Enjoy gourmet snacks, beverages, and exclusive treats.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500">
+        <img src="assets/Images/IMG_3214.JPG" alt="City Pride Seating" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+          <h3 class="text-2xl font-bold text-white mb-2">Recliner Seating</h3>
+          <p class="text-gray-200 text-sm">Ultimate comfort with premium recliner seats.</p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500">
+        <img src="assets/Images/IMG_3167.JPG" alt="City Pride Sound System" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+          <h3 class="text-2xl font-bold text-white mb-2">Dolby Atmos Sound</h3>
+          <p class="text-gray-200 text-sm">Feel every beat with crystal-clear surround sound.</p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500">
+        <img src="assets/Images/IMG_3227.JPG " alt="City Pride Ambience" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+          <h3 class="text-2xl font-bold text-white mb-2">Elegant Ambience</h3>
+          <p class="text-gray-200 text-sm">Aesthetically designed interiors for a luxurious feel.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+  <a href="https://in.bookmyshow.com/cinemas/pune/city-pride-kharadi/buytickets/CYKR/20251031" target="_blank" rel="noopener noreferrer" class="inline-block">
+    <button class="bg-[#002F67] text-white font-semibold text-lg px-8 py-3 rounded-full shadow-md hover:bg-[#E5B200] hover:text-[#002F67] transition-all duration-300">
+      Book Tickets
+    </button>
+  </a>
+</div>
+y
+  </div>
+</section>
+
+<style>
+  #city-pride-theatre {
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,1));
+  }
+  .group:hover img {
+    filter: brightness(1.1);
+  }
+</style>
+
+   
     <!-- Plan Your Weekend -->
     <section class="py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
         <div class="container mx-auto px-6 text-center text-white">
             <h2 class="text-5xl font-black mb-6">Plan Your Weekend at Nyati Plaza</h2>
             <p class="text-2xl mb-8">From movies to gaming, tattoos to dining — everything you need for the perfect day out</p>
-            <button class="btn-gradient">
-                <i class="fas fa-calendar-alt mr-2"></i>Check Events Calendar
-            </button>
+          
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="brands.html" class="hover:text-white">Brands</a></li>
-                        <li><a href="dine.html" class="hover:text-white">Dining</a></li>
-                        <li><a href="visit.html" class="hover:text-white">Visit</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Contact</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><i class="fas fa-phone mr-2"></i>+91 1234 567 890</li>
-                        <li><i class="fas fa-envelope mr-2"></i>info@nyatiplaza.com</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Pune, India</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Hours</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>Mon-Thu: 10 AM - 10 PM</li>
-                        <li>Fri-Sun: 10 AM - 11 PM</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-gray-400 border-t border-gray-700 pt-6">
-                <p>© 2025 Nyati Plaza. All Rights Reserved.</p>
-            </div>
+    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Brand / About -->
+      <div>
+        <div class="flex items-center space-x-3 mb-5">
+          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-14 object-contain" />
+          <h3 class="text-2xl font-bold tracking-wide">Nyati Plaza</h3>
         </div>
-    </footer>
+        <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+          Experience luxury shopping, fine dining, and entertainment at Pune’s most vibrant destination where lifestyle meets elegance.
+        </p>
+      </div>
 
+      <!-- Explore -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Explore</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="brands.html" class="hover:text-[#E5B200] transition">Brands Directory</a></li>
+          <li><a href="dine.html" class="hover:text-[#E5B200] transition">Dining Options</a></li>
+          <li><a href="entertainment.html" class="hover:text-[#E5B200] transition">Entertainment</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Visit Info</a></li>
+        </ul>
+      </div>
+
+      <!-- Visit -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Visit</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Mall Hours</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Parking Info</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Mall Map</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact + Social -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Contact</h4>
+        <ul class="space-y-3 text-gray-300 mb-6">
+          <li class="flex items-center"><i class="fas fa-phone text-[#E5B200] mr-3"></i> +91 9164089089</li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt text-[#E5B200] mr-3"></i> Pune, India</li>
+          <li class="flex items-center"><i class="fas fa-envelope text-[#E5B200] mr-3"></i> info@nyatiplaza.com</li>
+        </ul>
+
+        <!-- Social Links Right Side -->
+        <div class="flex flex-wrap gap-4 justify-start lg:justify-start">
+          <a href="https://www.facebook.com/Nyatiplaza/" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/nyatiplazamall" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@Nyatiplazapune" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/nyatiplaza" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-600 my-8"></div>
+
+    <!-- Bottom Copyright -->
+    <div class="flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs sm:text-sm">
+      <p class="text-center md:text-left mb-3 md:mb-0">
+        © 2025 Nyati Plaza. All Rights Reserved.
+      </p>
+      <div class="space-x-3">
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" class="hover:text-white transition">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Blur Background -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
+</footer>
     <script>
         // Header scroll effect
         const header = document.getElementById('mainHeader');

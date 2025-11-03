@@ -193,34 +193,82 @@
 <body class="bg-white text-gray-900">
 
     <!-- Header -->
-    <header class="sticky-header glass-header" id="mainHeader">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-24 h-15 rounded-xl flex items-center justify-center">
-                        <span class="text-2xl font-black text-[--primary]">NP</span>
-                    </div>
-                </div>
-                
-                <nav class="hidden lg:flex items-center space-x-10">
-                   <a href="index.html" class="nav-link">Home</a>
-                    <a href="brands.html" class="nav-link">Brands</a> 
-                    <a href="dine.html" class="nav-link">Dine</a>
-                    <a href="entertainment.html" class="nav-link">Entertainment</a>
-                     <a href="gallery.html" class="nav-link">Gallery</a>
-                    <a href="visitnyati.html" class="nav-link">Visit Nyati</a>
-                </nav>
-                
-                <div class="flex items-center space-x-6">
-                    <button class="text-gray-700 hover:text-[--primary]">
-                        <i class="fas fa-search text-xl"></i>
-                    </button>
-                    <button class="btn-gradient">Lease Space</button>
-                </div>
-            </div>
+    <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
+  <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3 flex-shrink-0">
+        <div class="w-36 md:w-40 flex items-center justify-center">
+          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
         </div>
-    </header>
+      </div>
 
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
+        <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Home</a>
+        <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
+        <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Dine</a>
+        <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
+        <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
+        <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
+      </nav>
+
+      <!-- Header Buttons & Mobile Toggle -->
+      <div class="flex items-center space-x-3 sm:space-x-5">
+        <button class="text-[#002F67] hover:text-[#E5B200] transition">
+          <i class="fas fa-search text-lg md:text-xl"></i>
+        </button>
+        <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
+          <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
+    <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
+      <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
+      <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
+      <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
+      <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
+      <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
+      <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
+      <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    if (mobileMenuBtn && mobileMenu && menuIcon) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('fa-bars');
+        menuIcon.classList.toggle('fa-times');
+      });
+    }
+
+    // ✅ Fix scrolling issue by ensuring no overflow restrictions remain
+    document.body.style.overflowY = 'auto';
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.height = 'auto';
+    document.documentElement.style.height = 'auto';
+
+    // ✅ Add spacing below navbar so content is visible and scrollable
+    const header = document.getElementById('mainHeader');
+    if (header) {
+      const headerHeight = header.offsetHeight;
+      document.body.style.paddingTop = headerHeight + 'px';
+    }
+  });
+</script>
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="text-center">
@@ -230,138 +278,129 @@
     </section>
 
     <!-- Filter Section -->
-    <section class="py-12 bg-gradient-to-b from-white to-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-black mb-4">Filter Gallery</h2>
-            </div>
-            <div class="flex flex-wrap justify-center">
-                <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
-                <button class="filter-btn" onclick="filterGallery('architecture', this)">🏗️ Architecture</button>
-                <button class="filter-btn" onclick="filterGallery('events', this)">🎉 Events</button>
-                <button class="filter-btn" onclick="filterGallery('dining', this)">🍽️ Dining</button>
-                <button class="filter-btn" onclick="filterGallery('fashion', this)">👗 Fashion</button>
-                <button class="filter-btn" onclick="filterGallery('festivities', this)">✨ Festivities</button>
-            </div>
+  <section class="py-12 bg-gradient-to-b from-white to-gray-50">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-3xl font-black mb-8">Architecture Gallery</h2>
+  </div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Internal Architecture -->
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC04997.JPG" alt="Lobby Interior" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Lobby Interior</h3>
         </div>
-    </section>
-
-    <!-- Gallery Grid -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="gallery-grid">
-                <!-- Architecture -->
-                <div class="gallery-item" data-category="architecture">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=300&fit=crop" alt="Atrium Interiors">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Atrium Interiors</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="architecture">
-                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=300&fit=crop" alt="Modern Design">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Modern Design</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="architecture">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" alt="Entrance Hall">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Entrance Hall</h3>
-                    </div>
-                </div>
-
-                <!-- Events -->
-                <div class="gallery-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=300&fit=crop" alt="Diwali Celebration">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Diwali Celebration</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" alt="New Year Event">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">New Year Event</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop" alt="Summer Festival">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Summer Festival</h3>
-                    </div>
-                </div>
-
-                <!-- Dining -->
-                <div class="gallery-item" data-category="dining">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop" alt="Fine Dining">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Fine Dining</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="dining">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop" alt="Café Ambience">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Café Ambience</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="dining">
-                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561404?w=400&h=300&fit=crop" alt="Restaurant Interior">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Restaurant Interior</h3>
-                    </div>
-                </div>
-
-                <!-- Fashion -->
-                <div class="gallery-item" data-category="fashion">
-                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=300&fit=crop" alt="Fashion Display">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Fashion Display</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="fashion">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=300&fit=crop" alt="Boutique">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Boutique</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="fashion">
-                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=300&fit=crop" alt="Luxury Brands">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Luxury Brands</h3>
-                    </div>
-                </div>
-
-                <!-- Festivities -->
-                <div class="gallery-item" data-category="festivities">
-                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop" alt="Festival Decor">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Festival Decor</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="festivities">
-                    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop" alt="Celebration">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Celebration</h3>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="festivities">
-                    <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=300&fit=crop" alt="Special Event">
-                    <div class="gallery-item-overlay">
-                        <h3 class="text-lg font-bold">Special Event</h3>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src= "assets/plazainternal/DSC05000.JPG" alt="Lobby Interior" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Lobby Interior</h3>
         </div>
-    </section>
+      </div>
+
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC05002.JPG" alt="Modern Workspace" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Modern Workspace</h3>
+        </div>
+      </div>
+
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC04937.JPG" alt="Reception Area" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Reception Area</h3>
+        </div>
+      </div>
+
+      <!-- Outside Drone Shoots -->
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src=" assets/plazainternal/DJI_20250318172715_0001_D_01.JPG" alt="Aerial View of Building" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Aerial View of Building</h3>
+        </div>
+      </div>
+
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DJI_20250318192639_0042_D_01.JPG" alt="Drone Shot of Plaza" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Drone Shot of Plaza</h3>
+        </div>
+      </div>
+
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DJI_20250318174514_0021_D_01.JPG" alt="Building Facade" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Building Facade</h3>
+        </div>
+      </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC04964.JPG" alt="Building Facade" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Ambience</h3>
+        </div>
+      </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC04972.JPG" alt="Building Facade" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Caffeteria</h3>
+        </div>
+      </div>
+
+      <!-- Additional Shoots -->
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC05000.JPG" alt="Conference Room" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Conference Room</h3>
+        </div>
+      </div>
+
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC05008.JPG" alt="Open Office Space" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Lift Lobby</h3>
+        </div>
+      </div>
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC04978.JPG" alt="Open Office Space" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Entrance Night View</h3>
+        </div>
+      </div>
+
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DJI_20250318191957_0027_D_01.JPG" alt="Exterior Night View" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Exterior Night View</h3>
+        </div>
+      </div>
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DSC04937.JPG" alt="Exterior Night View" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold">Shoots</h3>
+        </div>
+      </div>
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="assets/plazainternal/DJI_20250318193415_0048_D_01.JPG" alt="Exterior Night View" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <h3 class="text-white text-lg font-semibold"></h3>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  // Simple hover animation (Tailwind handles most effects)
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('mouseenter', () => item.classList.add('scale-105'));
+    item.addEventListener('mouseleave', () => item.classList.remove('scale-105'));
+  });
+</script>
+
 
     <!-- CTA Section -->
     <section class="py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
@@ -375,47 +414,90 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="brands.html" class="hover:text-white">Brands</a></li>
-                        <li><a href="dine.html" class="hover:text-white">Dining</a></li>
-                        <li><a href="entertainment.html" class="hover:text-white">Entertainment</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Contact</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><i class="fas fa-phone mr-2"></i>+91 1234 567 890</li>
-                        <li><i class="fas fa-envelope mr-2"></i>info@nyatiplaza.com</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Pune, India</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Hours</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>Mon-Thu: 10 AM - 10 PM</li>
-                        <li>Fri-Sun: 10 AM - 11 PM</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-gray-400 border-t border-gray-700 pt-6">
-                <p>© 2025 Nyati Plaza. All Rights Reserved.</p>
-            </div>
+   <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Brand / About -->
+      <div>
+        <div class="flex items-center space-x-3 mb-5">
+          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-14 object-contain" />
+          <h3 class="text-2xl font-bold tracking-wide">Nyati Plaza</h3>
         </div>
-    </footer>
+        <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+          Experience luxury shopping, fine dining, and entertainment at Pune’s most vibrant destination where lifestyle meets elegance.
+        </p>
+      </div>
+
+      <!-- Explore -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Explore</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="brands.html" class="hover:text-[#E5B200] transition">Brands Directory</a></li>
+          <li><a href="dine.html" class="hover:text-[#E5B200] transition">Dining Options</a></li>
+          <li><a href="entertainment.html" class="hover:text-[#E5B200] transition">Entertainment</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Visit Info</a></li>
+        </ul>
+      </div>
+
+      <!-- Visit -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Visit</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Mall Hours</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Parking Info</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Mall Map</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact + Social -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Contact</h4>
+        <ul class="space-y-3 text-gray-300 mb-6">
+          <li class="flex items-center"><i class="fas fa-phone text-[#E5B200] mr-3"></i> +91 9164089089</li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt text-[#E5B200] mr-3"></i> Pune, India</li>
+          <li class="flex items-center"><i class="fas fa-envelope text-[#E5B200] mr-3"></i> info@nyatiplaza.com</li>
+        </ul>
+
+        <!-- Social Links Right Side -->
+        <div class="flex flex-wrap gap-4 justify-start lg:justify-start">
+          <a href="https://www.facebook.com/Nyatiplaza/" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/nyatiplazamall" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@Nyatiplazapune" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/nyatiplaza" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-600 my-8"></div>
+
+    <!-- Bottom Copyright -->
+    <div class="flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs sm:text-sm">
+      <p class="text-center md:text-left mb-3 md:mb-0">
+        © 2025 Nyati Plaza. All Rights Reserved.
+      </p>
+      <div class="space-x-3">
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" class="hover:text-white transition">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Blur Background -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
+</footer>
 
     <script>
         function filterGallery(category, button) {

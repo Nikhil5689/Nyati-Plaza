@@ -198,34 +198,82 @@
 <body class="bg-white text-gray-900">
 
     <!-- Header -->
-    <header class="sticky-header glass-header" id="mainHeader">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-24 h-15 rounded-xl flex items-center justify-center">
-                        <span class="text-2xl font-black text-[--primary]">NP</span>
-                    </div>
-                </div>
-                
-                <nav class="hidden lg:flex items-center space-x-10">
-                   <a href="index.html" class="nav-link">Home</a>
-                    <a href="brands.html" class="nav-link">Brands</a> 
-                    <a href="dine.html" class="nav-link">Dine</a>
-                    <a href="entertainment.html" class="nav-link">Entertainment</a>
-                     <a href="gallery.html" class="nav-link">Gallery</a>
-                    <a href="visitnyati.html" class="nav-link">Visit Nyati</a>
-                </nav>
-                
-                <div class="flex items-center space-x-6">
-                    <button class="text-gray-700 hover:text-[--primary]">
-                        <i class="fas fa-search text-xl"></i>
-                    </button>
-                    <button class="btn-gradient">Lease Space</button>
-                </div>
-            </div>
+    <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
+  <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3 flex-shrink-0">
+        <div class="w-36 md:w-40 flex items-center justify-center">
+          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
         </div>
-    </header>
+      </div>
 
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
+        <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Home</a>
+        <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
+        <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Dine</a>
+        <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
+        <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
+        <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
+      </nav>
+
+      <!-- Header Buttons & Mobile Toggle -->
+      <div class="flex items-center space-x-3 sm:space-x-5">
+        <button class="text-[#002F67] hover:text-[#E5B200] transition">
+          <i class="fas fa-search text-lg md:text-xl"></i>
+        </button>
+        <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
+          <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
+    <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
+      <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
+      <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
+      <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
+      <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
+      <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
+      <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
+      <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    if (mobileMenuBtn && mobileMenu && menuIcon) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('fa-bars');
+        menuIcon.classList.toggle('fa-times');
+      });
+    }
+
+    // ✅ Fix scrolling issue by ensuring no overflow restrictions remain
+    document.body.style.overflowY = 'auto';
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.height = 'auto';
+    document.documentElement.style.height = 'auto';
+
+    // ✅ Add spacing below navbar so content is visible and scrollable
+    const header = document.getElementById('mainHeader');
+    if (header) {
+      const headerHeight = header.offsetHeight;
+      document.body.style.paddingTop = headerHeight + 'px';
+    }
+  });
+</script>
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="text-center">
@@ -668,48 +716,90 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="dine.html" class="hover:text-white">Dining</a></li>
-                        <li><a href="entertainment.html" class="hover:text-white">Entertainment</a></li>
-                        <li><a href="visit.html" class="hover:text-white">Visit</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Contact</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><i class="fas fa-phone mr-2"></i>+91 1234 567 890</li>
-                        <li><i class="fas fa-envelope mr-2"></i>info@nyatiplaza.com</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Pune, India</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Hours</h4>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>Mon-Thu: 10 AM - 10 PM</li>
-                        <li>Fri-Sun: 10 AM - 11 PM</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-[#E5B200]">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[#E5B200]/20 flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D]"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-gray-400 border-t border-gray-700 pt-6">
-                <p>© 2025 Nyati Plaza. All Rights Reserved.</p>
-            </div>
+    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Brand / About -->
+      <div>
+        <div class="flex items-center space-x-3 mb-5">
+          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-14 object-contain" />
+          <h3 class="text-2xl font-bold tracking-wide">Nyati Plaza</h3>
         </div>
-    </footer>
+        <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+          Experience luxury shopping, fine dining, and entertainment at Pune’s most vibrant destination where lifestyle meets elegance.
+        </p>
+      </div>
 
+      <!-- Explore -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Explore</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="brands.html" class="hover:text-[#E5B200] transition">Brands Directory</a></li>
+          <li><a href="dine.html" class="hover:text-[#E5B200] transition">Dining Options</a></li>
+          <li><a href="entertainment.html" class="hover:text-[#E5B200] transition">Entertainment</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Visit Info</a></li>
+        </ul>
+      </div>
+
+      <!-- Visit -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Visit</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Mall Hours</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Parking Info</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">Mall Map</a></li>
+          <li><a href="visitnyati.html" class="hover:text-[#E5B200] transition">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact + Social -->
+      <div>
+        <h4 class="text-lg font-bold mb-5 text-[#E5B200] uppercase">Contact</h4>
+        <ul class="space-y-3 text-gray-300 mb-6">
+          <li class="flex items-center"><i class="fas fa-phone text-[#E5B200] mr-3"></i> +91 9164089089</li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt text-[#E5B200] mr-3"></i> Pune, India</li>
+          <li class="flex items-center"><i class="fas fa-envelope text-[#E5B200] mr-3"></i> info@nyatiplaza.com</li>
+        </ul>
+
+        <!-- Social Links Right Side -->
+        <div class="flex flex-wrap gap-4 justify-start lg:justify-start">
+          <a href="https://www.facebook.com/Nyatiplaza/" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/nyatiplazamall" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@Nyatiplazapune" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/nyatiplaza" class="w-10 h-10 rounded-full bg-[#E5B200]/20 border border-[#E5B200] flex items-center justify-center hover:bg-[#E5B200] hover:text-[#001F4D] transition">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-600 my-8"></div>
+
+    <!-- Bottom Copyright -->
+    <div class="flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs sm:text-sm">
+      <p class="text-center md:text-left mb-3 md:mb-0">
+        © 2025 Nyati Plaza. All Rights Reserved.
+      </p>
+      <div class="space-x-3">
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" class="hover:text-white transition">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Blur Background -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
+</footer>
     <script>
         function switchFloor(floor, button) {
             // Hide all floors
