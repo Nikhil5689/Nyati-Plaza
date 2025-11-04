@@ -27,6 +27,10 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
         
         body {
             font-family: 'Poppins', sans-serif;
@@ -54,8 +58,17 @@
             right: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+            /* Added py-4 for consistency with index.html */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
         
+        /* Added scrolled class for header shrink */
+        .sticky-header.scrolled {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
         .nav-link {
             position: relative;
             padding-bottom: 4px;
@@ -74,8 +87,15 @@
             transition: width 0.3s ease;
         }
         
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after { /* Active state */
             width: 100%;
+        }
+
+        /* Responsive adjustments for mobile menu links */
+        .lg\:hidden .nav-link {
+            padding: 0.5rem 0;
+            width: fit-content;
         }
         
         .btn-gradient {
@@ -87,6 +107,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap; /* Prevents button text wrapping */
         }
         
         .btn-gradient:hover {
@@ -96,7 +117,9 @@
         
         .hero-section {
             position: relative;
-            height: 500px;
+            /* Responsive height */
+            height: 300px;
+            md:height: 500px;
             background: linear-gradient(rgba(0, 47, 103, 0.5), rgba(0, 47, 103, 0.5)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&h=700&fit=crop');
             background-size: cover;
             background-position: center;
@@ -105,7 +128,8 @@
             justify-content: center;
             text-align: center;
             color: white;
-            margin-top: 80px;
+            margin-top: 80px; /* Offset for sticky header */
+            padding: 1.5rem; /* Padding for mobile */
         }
         
         .brand-card {
@@ -128,12 +152,21 @@
             background: white;
             border: 2px solid var(--primary);
             color: var(--primary);
-            padding: 12px 24px;
+            padding: 10px 16px; /* Responsive padding */
+            font-size: 0.875rem; /* Responsive font size */
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 8px;
+            margin: 4px; /* Added margin for wrapping */
+        }
+
+        @media (min-width: 640px) {
+            .tab-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+                margin: 8px;
+            }
         }
         
         .tab-btn.active {
@@ -142,8 +175,9 @@
             border-color: transparent;
         }
         
-        .tab-btn:hover {
+        .tab-btn:hover:not(.active) {
             transform: translateY(-2px);
+            background: #f0f6ff;
         }
         
         .carousel-container {
@@ -183,22 +217,25 @@
             background: white;
         }
         
-        @media (max-width: 768px) {
-            .hero-section {
-                height: 300px;
+        /* Responsive typography fallbacks */
+        @media (max-width: 767px) {
+            .text-6xl {
+                font-size: 2.5rem; /* 4xl */
+                line-height: 1.1;
             }
-            
-            .tab-btn {
-                padding: 10px 16px;
-                font-size: 0.9rem;
+            .text-5xl {
+                font-size: 2.25rem; /* 3xl */
+            }
+            .text-2xl {
+                font-size: 1.125rem; /* xl */
             }
         }
     </style>
 </head>
 <body class="bg-white text-gray-900">
 
-    <!-- Header -->
-    <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
+    <!-- Header (Copied from index.html for consistency) -->
+     <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
   <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
     <div class="flex items-center justify-between">
       <!-- Logo -->
@@ -246,39 +283,13 @@
   </div>
 </header>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.getElementById('menuIcon');
 
-    if (mobileMenuBtn && mobileMenu && menuIcon) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-      });
-    }
-
-    // ✅ Fix scrolling issue by ensuring no overflow restrictions remain
-    document.body.style.overflowY = 'auto';
-    document.documentElement.style.overflowY = 'auto';
-    document.body.style.height = 'auto';
-    document.documentElement.style.height = 'auto';
-
-    // ✅ Add spacing below navbar so content is visible and scrollable
-    const header = document.getElementById('mainHeader');
-    if (header) {
-      const headerHeight = header.offsetHeight;
-      document.body.style.paddingTop = headerHeight + 'px';
-    }
-  });
-</script>
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="text-center">
-            <h1 class="text-6xl font-black mb-4">Discover Global Brands</h1>
-            <p class="text-2xl mb-8">Explore 130+ premium retail outlets, from fashion to lifestyle</p>
+            <!-- Responsive typography -->
+            <h1 class="text-4xl sm:text-6xl font-black mb-4">Discover Global Brands</h1>
+            <p class="text-lg sm:text-2xl mb-8">Explore 130+ premium retail outlets, from fashion to lifestyle</p>
             <button class="btn-gradient" onclick="document.getElementById('directory').scrollIntoView({behavior: 'smooth'});">
                 <i class="fas fa-list mr-2"></i>View Floor Directory
             </button>
@@ -286,24 +297,26 @@
     </section>
 
     <!-- Floor Directory -->
-<script src="https://cdn.tailwindcss.com"></script>
-<section id="directory" class="py-24 bg-gradient-to-b from-white via-gray-50 to-[#f7f9fb]">
+<section id="directory" class="py-16 sm:py-24 bg-gradient-to-b from-white via-gray-50 to-[#f7f9fb]">
   <div class="container mx-auto px-6 max-w-7xl">
     <div class="text-center mb-12">
-      <h2 class="text-5xl font-black mb-2 text-[#002F67] tracking-tight">Floor Directory</h2>
-      <p class="text-xl text-gray-600">Explore all brands by floor</p>
+      <!-- Responsive typography -->
+      <h2 class="text-3xl sm:text-5xl font-black mb-2 text-[#002F67] tracking-tight">Floor Directory</h2>
+      <p class="text-base sm:text-xl text-gray-600">Explore all brands by floor</p>
     </div>
 
-    <div class="flex justify-center gap-6 mb-12">
+    <!-- Responsive tab container -->
+    <div class="flex justify-center flex-wrap gap-2 sm:gap-6 mb-12">
       <button class="tab-btn active" onclick="switchFloor('ground', this)">Ground Floor</button>
       <button class="tab-btn" onclick="switchFloor('first', this)">1st Floor</button>
       <button class="tab-btn" onclick="switchFloor('second', this)">2nd Floor</button>
     </div>
 
     <!-- Ground Floor -->
+    <!-- Grid is already responsive: grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 -->
     <div id="ground" class="floor-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="" alt="TREM" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/f1f5f9/64748b?text=TREM" alt="TREM" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-[#002F67] mb-1">TREM</h3>
         <p class="text-gray-700 mb-1 capitalize">Experience center</p>
         <p class="text-sm text-gray-500 mb-1">📞 9714077721</p>
@@ -311,7 +324,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/37.png" alt="Jivika - Gemma Geminus" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/37.png" alt="Jivika - Gemma Geminus" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Jivika'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Jivika - Gemma Geminus</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 9028954014</p>
@@ -319,7 +332,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/55.png" alt="Titan" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/55.png" alt="Titan" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Titan'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Titan</h3>
         <p class="text-gray-700 mb-1 lowercase">watches</p>
         <p class="text-sm text-gray-500 mb-1">📞 8180055329</p>
@@ -327,7 +340,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/38.png" alt="Mudrika Womens Ethnic Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/38.png" alt="Mudrika Womens Ethnic Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Mudrika'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Mudrika Womens Ethnic Wear</h3>
         <p class="text-gray-700 mb-1 capitalize">Women's ethnic</p>
         <p class="text-sm text-gray-500 mb-1">📞 8010714868</p>
@@ -335,21 +348,21 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/16.png" alt="Food Junction & Barcode" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/16.png" alt="Food Junction & Barcode" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Food+Junction'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Food Junction & Barcode</h3>
         <p class="text-gray-700 mb-1 capitalize">Fashion apparel</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:-</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/63.png" alt="Reliance Fashion World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/63.png" alt="Reliance Fashion World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Reliance'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Reliance Fashion World</h3>
         <p class="text-gray-700 mb-1 capitalize">Apparel</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:-</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="https://via.placeholder.com/150x80?text=Candy+Floss" alt="Candy Floss" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/f1f5f9/64748b?text=Candy+Floss" alt="Candy Floss" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Candy Floss</h3>
         <p class="text-gray-700 mb-1 lowercase">confectionary</p>
         <p class="text-sm text-gray-500 mb-1">📞 8855003707</p>
@@ -357,7 +370,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/6.png" alt="Hy Fashion" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/6.png" alt="Hy Fashion" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Hy+Fashion'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Hy Fashion</h3>
         <p class="text-gray-700 mb-1 capitalize">Women's ethnic</p>
         <p class="text-sm text-gray-500 mb-1">📞 8799992174</p>
@@ -365,14 +378,14 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/17.png" alt="VR Mart" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/17.png" alt="VR Mart" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=VR+Mart'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">VR Mart</h3>
         <p class="text-gray-700 mb-1 lowercase">mini grocery/ departmental store</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 px-3 py-1 rounded-full">Shop No:- 23</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/56.png" alt="Baggit" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/56.png" alt="Baggit" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Baggit'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Baggit</h3>
         <p class="text-gray-700 mb-1 lowercase">accessories</p>
         <p class="text-sm text-gray-500 mb-1">📞 7397805888</p>
@@ -380,7 +393,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="https://via.placeholder.com/150x80?text=Silver+and+Pearl" alt="Silver and Pearl" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/f1f5f9/64748b?text=Silver+and+Pearl" alt="Silver and Pearl" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Silver and Pearl</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 7397805888</p>
@@ -388,14 +401,14 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/21.png" alt="Aden Perfume" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/21.png" alt="Aden Perfume" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Aden+Perfume'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Aden Perfume</h3>
         <p class="text-gray-700 mb-1 lowercase">perfume</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 28</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/49.png" alt="Palmonas" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/49.png" alt="Palmonas" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Palmonas'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Palmonas</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 7558734508</p>
@@ -403,7 +416,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/47.png" alt="Tuanz" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/47.png" alt="Tuanz" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Tuanz'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Tuanz</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 7620093221</p>
@@ -411,7 +424,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/19.png" alt="Ajmal" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/19.png" alt="Ajmal" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Ajmal'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Ajmal</h3>
         <p class="text-gray-700 mb-1 lowercase">perfume</p>
         <p class="text-sm text-gray-500 mb-1">📞 8411891959</p>
@@ -419,7 +432,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/54.png" alt="Mama Earth" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/54.png" alt="Mama Earth" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Mama+Earth'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Mama Earth</h3>
         <p class="text-gray-700 mb-1 lowercase">cosmetics</p>
         <p class="text-sm text-gray-500 mb-1">📞 9022863768</p>
@@ -427,7 +440,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/58.png" alt="Indian Terrain" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/58.png" alt="Indian Terrain" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Indian+Terrain'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Indian Terrain</h3>
         <p class="text-gray-700 mb-1 capitalize">Apparel</p>
         <p class="text-sm text-gray-500 mb-1">📞 9423646947</p>
@@ -435,7 +448,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="https://via.placeholder.com/150x80?text=Royal+Imitation" alt="Royal Imitation Jewellry" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/f1f5f9/64748b?text=Royal+Imitation" alt="Royal Imitation Jewellry" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Royal Imitation Jewellry</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 8205786872</p>
@@ -443,14 +456,14 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="https://via.placeholder.com/150x80?text=PNG+Jewellery" alt="PNG Jewellery" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/f1f5f9/64748b?text=PNG+Jewellery" alt="PNG Jewellery" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-[#002F67] mb-1">PNG Jewellery</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 39</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/50.png" alt="LivSpace" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/50.png" alt="LivSpace" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=LivSpace'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">LivSpace</h3>
         <p class="text-gray-700 mb-1 lowercase">Home furnishing</p>
         <p class="text-sm text-gray-500 mb-1">📞 8047759151</p>
@@ -458,7 +471,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/51.png" alt="Candere by Kalyan Jewellers" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/51.png" alt="Candere by Kalyan Jewellers" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Candere'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Candere by Kalyan Jewellers</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 8983239243</p>
@@ -466,7 +479,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/53.png" alt="Blue Stone" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/53.png" alt="Blue Stone" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Blue+Stone'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Blue Stone</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 8655371365</p>
@@ -474,7 +487,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/35.png" alt="Stylox Mens Apparels" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/35.png" alt="Stylox Mens Apparels" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Stylox'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Stylox Mens Apparels</h3>
         <p class="text-gray-700 mb-1 capitalize">Apparel</p>
         <p class="text-sm text-gray-500 mb-1">📞 9881196621</p>
@@ -482,7 +495,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/27.png" alt="Candy World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/27.png" alt="Candy World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Candy+World'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Candy World</h3>
         <p class="text-gray-700 mb-1 capitalize">Cosmetics</p>
         <p class="text-sm text-gray-500 mb-1">📞 7900329560</p>
@@ -490,7 +503,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/3.png" alt="Relax Zone" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/3.png" alt="Relax Zone" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Relax+Zone'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Relax Zone</h3>
         <p class="text-gray-700 mb-1 lowercase">Leisure</p>
         <p class="text-sm text-gray-500 mb-1">📞 7020519560</p>
@@ -498,21 +511,21 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/32.png" alt="Upgrade India Interior" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/32.png" alt="Upgrade India Interior" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Upgrade+India'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Upgrade India Interior</h3>
         <p class="text-gray-700 mb-1 lowercase">Leisure</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- Kiosk- 4C</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/42.png" alt="Lenskart" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/42.png" alt="Lenskart" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Lenskart'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Lenskart</h3>
         <p class="text-gray-700 mb-1 lowercase">Leisure</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- 09</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-[#002F67] shadow-lg p-6 transition transform hover:scale-105 hover:border-blue-600 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/24.png" alt="Aditya Chaat Bazaar" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/24.png" alt="Aditya Chaat Bazaar" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/f1f5f9/64748b?text=Aditya+Chaat'"/>
         <h3 class="font-bold text-xl text-[#002F67] mb-1">Aditya Chaat Bazaar</h3>
         <p class="text-gray-700 mb-1 lowercase">Leisure</p>
         <span class="text-sm font-semibold text-[#002F67] bg-gray-100 rounded-full px-3 py-1">Shop No:- na</span>
@@ -521,8 +534,8 @@
 
     <!-- 1st Floor -->
     <div id="first" class="floor-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-      <div class="brand-card  rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="" alt="TREM" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+      <div class="brand-card rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
+        <img src="https://placehold.co/128x80/fdf2f8/831843?text=TREM" alt="TREM" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-pink-700 mb-1">TREM</h3>
         <p class="text-gray-700 mb-1 capitalize">Experience center</p>
         <p class="text-sm text-gray-500 mb-1">📞 9714077721</p>
@@ -530,7 +543,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/33.png" alt="JC Footwear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/33.png" alt="JC Footwear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=JC+Footwear'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">JC Footwear</h3>
         <p class="text-gray-700 mb-1 lowercase">footwear</p>
         <p class="text-sm text-gray-500 mb-1">📞 9657071708</p>
@@ -538,7 +551,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/60.png" alt="W & Aurelia" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/60.png" alt="W & Aurelia" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=W+%26+Aurelia'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">W & Aurelia</h3>
         <p class="text-gray-700 mb-1 lowercase">women's ethnic</p>
         <p class="text-sm text-gray-500 mb-1">📞 8806673666</p>
@@ -546,7 +559,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/10.png" alt="Ajmera Fashion" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/10.png" alt="Ajmera Fashion" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Ajmera'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Ajmera Fashion</h3>
         <p class="text-gray-700 mb-1 lowercase">women's ethnic</p>
         <p class="text-sm text-gray-500 mb-1">📞 8806673666</p>
@@ -554,14 +567,14 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/36.png" alt="Cuddles Kids Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/36.png" alt="Cuddles Kids Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Cuddles'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Cuddles Kids Wear</h3>
         <p class="text-gray-700 mb-1 lowercase">kids wear</p>
         <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 120</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/4.png" alt="Miniso" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/4.png" alt="Miniso" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Miniso'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Miniso</h3>
         <p class="text-gray-700 mb-1 lowercase">lifestyle product</p>
         <p class="text-sm text-gray-500 mb-1">📞 9156324843</p>
@@ -569,7 +582,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/1.png" alt="Artastic" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/1.png" alt="Artastic" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Artastic'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Artastic</h3>
         <p class="text-gray-700 mb-1 lowercase">stationary</p>
         <p class="text-sm text-gray-500 mb-1">📞 9657682215</p>
@@ -577,14 +590,14 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="" alt="Mobile Cover House" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/fdf2f8/831843?text=Mobile+Cover" alt="Mobile Cover House" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-pink-700 mb-1">Mobile Cover House</h3>
         <p class="text-gray-700 mb-1 lowercase">fashion</p>
         <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 129</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/46.png" alt="Glamorous - Womens Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/46.png" alt="Glamorous - Womens Wear" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Glamorous'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Glamorous - Womens Wear</h3>
         <p class="text-gray-700 mb-1 lowercase">women's ethnic</p>
         <p class="text-sm text-gray-500 mb-1">📞 9665851237</p>
@@ -592,7 +605,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/40.png" alt="Swapnagandha Artificial Jewellery and Jute Bags" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/40.png" alt="Swapnagandha Artificial Jewellery and Jute Bags" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Swapnagandha'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Swapnagandha Artificial Jewellery and Jute Bags</h3>
         <p class="text-gray-700 mb-1 lowercase">fashion accessories</p>
         <p class="text-sm text-gray-500 mb-1">📞 9421740248</p>
@@ -600,7 +613,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/31.png" alt="Aurgat" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/31.png" alt="Aurgat" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Aurgat'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Aurgat</h3>
         <p class="text-gray-700 mb-1 lowercase">jewellery</p>
         <p class="text-sm text-gray-500 mb-1">📞 9175907825</p>
@@ -608,7 +621,7 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/11.png" alt="Rich Infinity Salon" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/11.png" alt="Rich Infinity Salon" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Rich+Infinity'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Rich Infinity Salon</h3>
         <p class="text-gray-700 mb-1 lowercase">salon</p>
         <p class="text-sm text-gray-500 mb-1">📞 9988835909</p>
@@ -616,14 +629,14 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/52.png" alt="Lifesta" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/52.png" alt="Lifesta" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Lifesta'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Lifesta</h3>
         <p class="text-gray-700 mb-1 capitalize">Retail</p>
         <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 118</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-pink-600 shadow-lg p-6 transition hover:scale-105 hover:border-pink-700 hover:shadow-2xl flex flex-col items-center text-center">
-        <img src="assets/logos/41.png" alt="Vision World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/41.png" alt="Vision World" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fdf2f8/831843?text=Vision+World'"/>
         <h3 class="font-bold text-xl text-pink-700 mb-1">Vision World</h3>
         <p class="text-gray-700 mb-1 capitalize">Retail</p>
         <span class="text-sm font-semibold text-pink-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 131</span>
@@ -633,7 +646,7 @@
     <!-- 2nd Floor -->
     <div id="second" class="floor-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="assets/logos/7.png" alt="Buzzy Inks Tattoo Studio" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/7.png" alt="Buzzy Inks Tattoo Studio" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fff7ed/c2410c?text=Buzzy+Inks'"/>
         <h3 class="font-bold text-xl text-orange-700 mb-1">Buzzy Inks Tattoo Studio</h3>
         <p class="text-gray-700 mb-1 lowercase">tattoo</p>
         <p class="text-sm text-gray-500 mb-1">📞 9860038601</p>
@@ -641,42 +654,42 @@
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="assets/logos/61.png" alt="City Pride" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/61.png" alt="City Pride" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fff7ed/c2410c?text=City+Pride'"/>
         <h3 class="font-bold text-xl text-orange-700 mb-1">City Pride</h3>
         <p class="text-gray-700 mb-1 lowercase">entertainment</p>
         <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 1</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="assets/logos/9.png" alt="VR play and Party" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/9.png" alt="VR play and Party" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fff7ed/c2410c?text=VR+Play'"/>
         <h3 class="font-bold text-xl text-orange-700 mb-1">VR play and Party</h3>
         <p class="text-gray-700 mb-1 lowercase">entertainment</p>
         <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 211</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="assets/logos/2.png" alt="Delhi Treat" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/2.png" alt="Delhi Treat" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fff7ed/c2410c?text=Delhi+Treat'"/>
         <h3 class="font-bold text-xl text-orange-700 mb-1">Delhi Treat</h3>
         <p class="text-gray-700 mb-1 capitalize">Food Court</p>
         <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- QSR 5</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="assets/logos/12.png" alt="Chicago pizza" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/12.png" alt="Chicago pizza" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fff7ed/c2410c?text=Chicago+Pizza'"/>
         <h3 class="font-bold text-xl text-orange-700 mb-1">Chicago pizza</h3>
         <p class="text-gray-700 mb-1 capitalize">Food Court</p>
         <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- 203</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="" alt="Nashta Express" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="https://placehold.co/128x80/fff7ed/c2410c?text=Nashta+Express" alt="Nashta Express" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
         <h3 class="font-bold text-xl text-orange-700 mb-1">Nashta Express</h3>
         <p class="text-gray-700 mb-1 capitalize">Food Court</p>
         <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- QSR6</span>
       </div>
 
       <div class="brand-card group bg-white rounded-xl border-2 border-orange-500 shadow-lg transition hover:scale-105 hover:border-orange-600 hover:shadow-2xl p-6 flex flex-col items-center text-center">
-        <img src="assets/logos/23.png" alt="Mak o Mak" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" />
+        <img src="assets/logos/23.png" alt="Mak o Mak" class="mb-4 h-20 w-32 object-contain rounded bg-gray-100" onerror="this.src='https://placehold.co/128x80/fff7ed/c2410c?text=Mak+o+Mak'"/>
         <h3 class="font-bold text-xl text-orange-700 mb-1">Mak o Mak</h3>
         <p class="text-gray-700 mb-1 capitalize">Food Court</p>
         <span class="text-sm font-semibold text-orange-700 bg-gray-100 rounded-full px-3 py-1">Shop No:- kiosk 1-C</span>
@@ -685,38 +698,23 @@
   </div>
 </section>
 
-<script>
-  function switchFloor(floor, btn) {
-    document.querySelectorAll('.floor-content').forEach(el => el.classList.add('hidden'));
-    document.getElementById(floor).classList.remove('hidden');
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-</script>
-
-<style>
-  .tab-btn {
-    @apply px-6 py-2 rounded font-semibold border border-[#002F67] text-[#002F67] bg-white transition-colors;
-  }
-  .tab-btn.active, .tab-btn:hover {
-    @apply bg-[#002F67] text-white;
-  }
-</style>
+<!-- Removed old <script> and <style> blocks for floor directory -->
 
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
+    <section class="py-16 sm:py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
         <div class="container mx-auto px-6 text-center text-white">
-            <h2 class="text-5xl font-black mb-6">Your Next Favourite Brand Awaits</h2>
-            <p class="text-2xl mb-8">Discover 130+ premium outlets at Nyati Plaza</p>
+            <!-- Responsive typography -->
+            <h2 class="text-3xl sm:text-5xl font-black mb-6">Your Next Favourite Brand Awaits</h2>
+            <p class="text-lg sm:text-2xl mb-8">Discover 130+ premium outlets at Nyati Plaza</p>
             <button class="btn-gradient">
                 <i class="fas fa-map-marker-alt mr-2"></i>Visit Us Today
             </button>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
+    <!-- Footer (Copied from index.html for consistency) -->
+  <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
   <div class="container mx-auto px-6 relative z-10">
     <!-- Top Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -800,30 +798,111 @@
   <div class="absolute top-0 right-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
   <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
 </footer>
+
+
+    <!-- Combined & Corrected Script -->
     <script>
+        // --- Floor Switching Logic ---
         function switchFloor(floor, button) {
             // Hide all floors
             document.querySelectorAll('.floor-content').forEach(el => el.classList.add('hidden'));
             
             // Show selected floor
-            document.getElementById(floor).classList.remove('hidden');
+            const floorEl = document.getElementById(floor);
+            if (floorEl) {
+                floorEl.classList.remove('hidden');
+            }
             
             // Update button styles
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
         }
 
-        // Header scroll effect
+        // --- Header Scroll Effect ---
         const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.paddingTop = '0.5rem';
-                header.style.paddingBottom = '0.5rem';
-            } else {
-                header.style.paddingTop = '1rem';
-                header.style.paddingBottom = '1rem';
-            }
+        if (header) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // --- Mobile Menu Logic ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        if (mobileMenuBtn && mobileMenu && menuIcon) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Change icon
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // --- Smooth Scroll for Anchor Links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                
+                // Special case for home link (if it exists)
+                if (href === "#home" || href === "index.html") {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                    return;
+                }
+
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerOffset = 90; // Height of sticky header
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                } else if (href.includes('.html')) {
+                    // Fallback for external page links
+                    window.location.href = href;
+                }
+            });
         });
+        
     </script>
 </body>
 </html>

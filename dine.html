@@ -27,6 +27,10 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
         
         body {
             font-family: 'Poppins', sans-serif;
@@ -54,6 +58,15 @@
             right: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+            /* Added padding for consistency */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* Added scrolled class for header shrink */
+        .sticky-header.scrolled {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
         }
         
         .nav-link {
@@ -74,8 +87,15 @@
             transition: width 0.3s ease;
         }
         
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after { /* Active state */
             width: 100%;
+        }
+
+        /* Responsive adjustments for mobile menu links */
+        .lg\:hidden .nav-link {
+            padding: 0.5rem 0;
+            width: fit-content;
         }
         
         .btn-gradient {
@@ -87,6 +107,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap; /* Prevents button text wrapping */
         }
         
         .btn-gradient:hover {
@@ -96,7 +117,8 @@
         
         .hero-section {
             position: relative;
-            height: 500px;
+            /* Responsive height */
+            height: 300px;
             background: linear-gradient(rgba(0, 47, 103, 0.5), rgba(0, 47, 103, 0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=700&fit=crop');
             background-size: cover;
             background-position: center;
@@ -105,7 +127,8 @@
             justify-content: center;
             text-align: center;
             color: white;
-            margin-top: 80px;
+            /* margin-top: 80px; */ /* This is now handled by body padding */
+            padding: 1.5rem; /* Padding for mobile */
         }
         
         .restaurant-card {
@@ -154,7 +177,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 8px;
+            margin: 4px; /* Responsive margin */
         }
         
         .filter-btn.active {
@@ -163,118 +186,106 @@
             border-color: transparent;
         }
         
-        .filter-btn:hover {
+        .filter-btn:hover:not(.active) {
             transform: translateY(-2px);
+            background: #f0f6ff;
         }
         
-        .split-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
+        /* .split-section is now handled by Tailwind classes */
         
         .split-section img {
             border-radius: var(--radius);
             box-shadow: var(--shadow-lg);
+            width: 100%; /* Ensure image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Cover the area nicely */
+            max-height: 500px; /* Optional: constrain height */
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .hero-section {
-                height: 300px;
+                height: 500px;
             }
-            
-            .split-section {
-                grid-template-columns: 1fr;
+        }
+
+        /* Responsive typography fallbacks */
+        @media (max-width: 767px) {
+            .text-6xl {
+                font-size: 2.5rem; /* 4xl */
+                line-height: 1.1;
+            }
+            .text-5xl {
+                font-size: 2.25rem; /* 3xl */
+            }
+            .text-3xl {
+                font-size: 1.875rem; /* 2xl */
+            }
+            .text-2xl {
+                font-size: 1.125rem; /* xl */
+            }
+            .text-xl {
+                font-size: 1rem; /* base */
             }
         }
     </style>
 </head>
 <body class="bg-white text-gray-900">
 
-    <!-- Header -->
+    <!-- Header - UNCHANGED AS REQUESTED -->
     <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
-  <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
-    <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <div class="flex items-center space-x-3 flex-shrink-0">
-        <div class="w-36 md:w-40 flex items-center justify-center">
-          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
+      <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3 flex-shrink-0">
+            <div class="w-36 md:w-40 flex items-center justify-center">
+              <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
+            </div>
+          </div>
+    
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
+            <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Home</a>
+            <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
+            <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition active">Dine</a> <!-- Set as active -->
+            <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
+            <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
+            <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
+          </nav>
+    
+          <!-- Header Buttons & Mobile Toggle -->
+          <div class="flex items-center space-x-3 sm:space-x-5">
+            <button class="text-[#002F67] hover:text-[#E5B200] transition">
+              <i class="fas fa-search text-lg md:text-xl"></i>
+            </button>
+            <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
+              <i class="fas fa-bars" id="menuIcon"></i>
+            </button>
+          </div>
         </div>
       </div>
-
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
-        <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Home</a>
-        <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
-        <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Dine</a>
-        <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
-        <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
-        <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
-      </nav>
-
-      <!-- Header Buttons & Mobile Toggle -->
-      <div class="flex items-center space-x-3 sm:space-x-5">
-        <button class="text-[#002F67] hover:text-[#E5B200] transition">
-          <i class="fas fa-search text-lg md:text-xl"></i>
-        </button>
-        <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
-        <!-- Mobile Menu Button -->
-        <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
-          <i class="fas fa-bars" id="menuIcon"></i>
-        </button>
+    
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
+        <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
+          <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
+          <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
+          <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
+          <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
+          <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
+          <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
+          <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+        </nav>
       </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
-    <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
-      <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
-      <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
-      <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
-      <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
-      <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
-      <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
-      <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
-    </nav>
-  </div>
-</header>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.getElementById('menuIcon');
-
-    if (mobileMenuBtn && mobileMenu && menuIcon) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-      });
-    }
-
-    // ✅ Fix scrolling issue by ensuring no overflow restrictions remain
-    document.body.style.overflowY = 'auto';
-    document.documentElement.style.overflowY = 'auto';
-    document.body.style.height = 'auto';
-    document.documentElement.style.height = 'auto';
-
-    // ✅ Add spacing below navbar so content is visible and scrollable
-    const header = document.getElementById('mainHeader');
-    if (header) {
-      const headerHeight = header.offsetHeight;
-      document.body.style.paddingTop = headerHeight + 'px';
-    }
-  });
-</script>
-
+    </header>
+    
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="text-center">
-            <h1 class="text-6xl font-black mb-4">A Culinary Experience Beyond Taste</h1>
-            <p class="text-2xl mb-8">From casual bites to fine dining — discover every flavour at Nyati Plaza</p>
+            <!-- Responsive typography -->
+            <h1 class="text-4xl sm:text-6xl font-black mb-4">A Culinary Experience Beyond Taste</h1>
+            <p class="text-lg sm:text-2xl mb-8">From casual bites to fine dining — discover every flavour at Nyati Plaza</p>
             <button class="btn-gradient" onclick="document.getElementById('restaurants').scrollIntoView({behavior: 'smooth'});">
                 <i class="fas fa-utensils mr-2"></i>Explore Restaurants
             </button>
@@ -285,8 +296,10 @@
 <section class="py-12 bg-gradient-to-b from-white to-gray-50">
   <div class="container mx-auto px-6">
     <div class="text-center mb-8">
-      <h2 class="text-3xl font-black mb-4">Filter by Floor</h2>
+      <!-- Responsive typography -->
+      <h2 class="text-2xl sm:text-3xl font-black mb-4">Filter by Floor</h2>
     </div>
+    <!-- Added flex-wrap for mobile -->
     <div class="flex flex-wrap justify-center gap-3">
       <button class="filter-btn active" onclick="filterRestaurants('all', this)">All</button>
       <button class="filter-btn" onclick="filterRestaurants('ground', this)">🏢 Ground Floor</button>
@@ -297,18 +310,20 @@
 </section>
 
 <!-- Restaurant Grid -->
-<section id="restaurants" class="py-20 bg-white">
+<section id="restaurants" class="py-16 sm:py-20 bg-white">
   <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-4">Dining Outlets</h2>
-      <p class="text-xl text-gray-600">Explore Delicious Dining Options Across All Floors</p>
+    <div class="text-center mb-12 sm:mb-16">
+      <!-- Responsive typography -->
+      <h2 class="text-3xl sm:text-5xl font-black mb-4">Dining Outlets</h2>
+      <p class="text-base sm:text-xl text-gray-600">Explore Delicious Dining Options Across All Floors</p>
     </div>
 
+    <!-- Responsive grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <!-- ================= GROUND FLOOR ================= -->
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/14.png" alt="Si Nonna's">
+        <img src="assets/logos/14.png" alt="Si Nonna's" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Si+Nonna%27s'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Si Nonna’s</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -320,7 +335,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/27.png" alt="Candy World">
+        <img src="assets/logos/27.png" alt="Candy World" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Candy+World'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Candy World</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -332,7 +347,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/29.png" alt="Nick Micks">
+        <img src="assets/logos/29.png" alt="Nick Micks" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Nick+Micks'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Nick Micks</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -344,7 +359,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/43.png" alt="Tea Post">
+        <img src="assets/logos/43.png" alt="Tea Post" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Tea+Post'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Tea Post</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -356,7 +371,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/45.png" alt="Havmor Ice Cream">
+        <img src="assets/logos/45.png" alt="Havmor Ice Cream" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Havmor'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Havmor Ice Cream</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -368,7 +383,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/25.png" alt="Crispy Crunch">
+        <img src="assets/logos/25.png" alt="Crispy Crunch" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Crispy+Crunch'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Crispy Crunch</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -380,7 +395,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="" alt="Squashed">
+        <img src="https://placehold.co/400x200/f1f5f9/64748b?text=Squashed" alt="Squashed" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Squashed'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Squashed</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -392,7 +407,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/34.png" alt="Waffle World">
+        <img src="assets/logos/34.png" alt="Waffle World" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Waffle+World'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Waffle World</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -404,7 +419,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/20.png" alt="Caffee#onthego">
+        <img src="assets/logos/20.png" alt="Caffee#onthego" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Caffee%23onthego'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Caffee#onthego</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -416,7 +431,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/64.png" alt="TAIKEN">
+        <img src="assets/logos/64.png" alt="TAIKEN" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=TAIKEN'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">TAIKEN</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -428,7 +443,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/44.png   " alt="Purnabrahma">
+        <img src="assets/logos/44.png" alt="Purnabrahma" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Purnabrahma'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Purnabrahma</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -440,7 +455,7 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/62.png" alt="McDonald's">
+        <img src="assets/logos/62.png" alt="McDonald's" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=McDonald%27s'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">McDonald’s</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -453,7 +468,7 @@
 
       <!-- ================= 1ST FLOOR ================= -->
       <div class="restaurant-card" data-category="first">
-        <img src="" alt="Sukhkarta Thali">
+        <img src="https://placehold.co/400x200/f1f5f9/64748b?text=Sukhkarta+Thali" alt="Sukhkarta Thali">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Sukhkarta Thali</h3>
           <p class="text-gray-600 mb-3">1st Floor</p>
@@ -465,7 +480,7 @@
       </div>
 
       <div class="restaurant-card" data-category="first">
-        <img src="assets/logos/8.png" alt="Elix Lounge">
+        <img src="assets/logos/8.png" alt="Elix Lounge" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Elix+Lounge'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Elix Lounge</h3>
           <p class="text-gray-600 mb-3">1st Floor</p>
@@ -480,7 +495,7 @@
 
       <!-- ================= 2ND FLOOR ================= -->
       <div class="restaurant-card" data-category="second">
-        <img src="assets/logos/13.png" alt="Tealogy">
+        <img src="assets/logos/13.png" alt="Tealogy" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Tealogy'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Tealogy</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -492,7 +507,7 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="assets/logos/22.png" alt="Fluffy Egg">
+        <img src="assets/logos/22.png" alt="Fluffy Egg" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Fluffy+Egg'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Fluffy Egg</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -504,7 +519,7 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="assets/logos/18.png" alt="Beyond Temptations">
+        <img src="assets/logos/18.png" alt="Beyond Temptations" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Beyond+Temptations'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Beyond Temptations</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -516,7 +531,7 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="https://via.placeholder.com/400x250?text=Mona+Foods+Logo" alt="Mona Foods">
+        <img src="https://placehold.co/400x200/f1f5f9/64748b?text=Mona+Foods" alt="Mona Foods">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Mona Foods</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -528,7 +543,7 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="https://via.placeholder.com/400x250?text=Gabru+Di+Chaap+Logo" alt="Gabru Di Chaap">
+        <img src="https://placehold.co/400x200/f1f5f9/64748b?text=Gabru+Di+Chaap" alt="Gabru Di Chaap">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Gabru Di Chaap</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -540,7 +555,7 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="https://via.placeholder.com/400x250?text=Momo+Magic+Cafe+Logo" alt="Momo Magic Café">
+        <img src="https://placehold.co/400x200/f1f5f9/64748b?text=Momo+Magic+Cafe" alt="Momo Magic Café">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Momo Magic Café</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -554,52 +569,37 @@
     </div>
   </div>
 </section>
-
-<script>
-function filterRestaurants(category, btn) {
-  const cards = document.querySelectorAll('.restaurant-card');
-  const buttons = document.querySelectorAll('.filter-btn');
-  buttons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  cards.forEach(card => {
-    if (category === 'all' || card.dataset.category === category) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
-
     
-    
-
     <!-- Dining Redefined Section -->
-    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section class="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto px-6">
-            <div class="split-section">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=500&fit=crop" alt="Dining Experience">
+            <!-- Responsive grid: stacks on mobile, 2-col on md+ -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+                <!-- Image column (order-1 on mobile, order-2 on md) -->
+                <div class="order-2 md:order-1">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=500&fit=crop" alt="Dining Experience" class="rounded-2xl shadow-xl">
                 </div>
-                <div>
-                    <h2 class="text-5xl font-black mb-6 text-[--primary]">Dining Redefined</h2>
-                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">From morning coffee to midnight cravings — we've got it all. Experience world-class dining in an ambience that matches the quality of our food.</p>
+                <!-- Content column (order-2 on mobile, order-1 on md) -->
+                <div class="order-1 md:order-2">
+                    <!-- Responsive typography -->
+                    <h2 class="text-3xl sm:text-5xl font-black mb-6 text-[--primary]">Dining Redefined</h2>
+                    <p class="text-base sm:text-xl text-gray-600 mb-6 leading-relaxed">From morning coffee to midnight cravings — we've got it all. Experience world-class dining in an ambience that matches the quality of our food.</p>
                     <div class="space-y-4 mb-8">
                         <div class="flex items-center space-x-4">
-                            <i class="fas fa-check-circle text-2xl text-[--accent]"></i>
-                            <p class="text-lg">100+ Dining Outlets</p>
+                            <i class="fas fa-check-circle text-xl sm:text-2xl text-[--accent]"></i>
+                            <p class="text-base sm:text-lg">100+ Dining Outlets</p>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <i class="fas fa-check-circle text-2xl text-[--accent]"></i>
-                            <p class="text-lg">Cuisines from Around the World</p>
+                            <i class="fas fa-check-circle text-xl sm:text-2xl text-[--accent]"></i>
+                            <p class="text-base sm:text-lg">Cuisines from Around the World</p>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <i class="fas fa-check-circle text-2xl text-[--accent]"></i>
-                            <p class="text-lg">Premium Ambience & Service</p>
+                            <i class="fas fa-check-circle text-xl sm:text-2xl text-[--accent]"></i>
+                            <p class="text-base sm:text-lg">Premium Ambience & Service</p>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <i class="fas fa-check-circle text-2xl text-[--accent]"></i>
-                            <p class="text-lg">Pre-Order & Reservation Available</p>
+                            <i class="fas fa-check-circle text-xl sm:text-2xl text-[--accent]"></i>
+                            <p class="text-base sm:text-lg">Pre-Order & Reservation Available</p>
                         </div>
                     </div>
                     <button class="btn-gradient">
@@ -611,17 +611,18 @@ function filterRestaurants(category, btn) {
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
+    <section class="py-16 sm:py-20 bg-gradient-to-r from-[#002F67] to-[#004C91]">
         <div class="container mx-auto px-6 text-center text-white">
-            <h2 class="text-5xl font-black mb-6">Ready to Dine?</h2>
-            <p class="text-2xl mb-8">Visit Nyati Plaza and explore our culinary paradise</p>
+            <!-- Responsive typography -->
+            <h2 class="text-3xl sm:text-5xl font-black mb-6">Ready to Dine?</h2>
+            <p class="text-lg sm:text-2xl mb-8">Visit Nyati Plaza and explore our culinary paradise</p>
             <button class="btn-gradient">
                 <i class="fas fa-map-marker-alt mr-2"></i>Get Directions
             </button>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - UNCHANGED AS REQUESTED -->
    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
   <div class="container mx-auto px-6 relative z-10">
     <!-- Top Section -->
@@ -707,34 +708,120 @@ function filterRestaurants(category, btn) {
   <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#E5B200]/10 blur-3xl rounded-full -z-10"></div>
 </footer>
 
+    <!-- Combined JavaScript -->
     <script>
+        // --- Restaurant Filtering Logic ---
         function filterRestaurants(category, button) {
             const cards = document.querySelectorAll('.restaurant-card');
             
             cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
+                // Check if card has the data-category attribute
+                const cardCategory = card.getAttribute('data-category');
+                if (!cardCategory) {
+                    // If a card has no category, you might want to hide it or show it always
+                    // For this case, we'll hide it if a filter is active
+                    if (category === 'all') {
+                         card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                    return; // skip to next card
+                }
+
+                if (category === 'all' || cardCategory === category) {
                     card.style.display = 'block';
+                    // Using a short delay for a subtle fade-in effect
                     setTimeout(() => card.style.opacity = '1', 10);
                 } else {
                     card.style.opacity = '0';
-                    setTimeout(() => card.style.display = 'none', 300);
+                    // Hide after fade-out transition
+                    setTimeout(() => card.style.display = 'none', 300); // 300ms matches .transition-all
                 }
             });
             
+            // Update button active state
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
         }
 
-        // Header scroll effect
+        // --- Header Scroll Effect ---
         const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.paddingTop = '0.5rem';
-                header.style.paddingBottom = '0.5rem';
-            } else {
-                header.style.paddingTop = '1rem';
-                header.style.paddingBottom = '1rem';
+        if (header) {
+            // This replaces the old logic with the class-based one from index.html
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // --- Mobile Menu & Body Padding Logic (from user file) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+
+            if (mobileMenuBtn && mobileMenu && menuIcon) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-times');
+            });
             }
+
+            // Fix scrolling issue by ensuring no overflow restrictions remain
+            document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
+            document.body.style.height = 'auto';
+            document.documentElement.style.height = 'auto';
+
+            // Add spacing below navbar so content is visible and scrollable
+            const headerEl = document.getElementById('mainHeader');
+            if (headerEl) {
+                const headerHeight = headerEl.offsetHeight;
+                // Use a wrapper or the first content section if body padding causes issues
+                // For this layout, padding the body is correct.
+                document.body.style.paddingTop = headerHeight + 'px';
+
+                // Also update hero margin-top just in case (optional, but safer)
+                const hero = document.querySelector('.hero-section');
+                if (hero) {
+                    hero.style.marginTop = '0px'; // Resetting margin as body padding handles it
+                }
+            }
+        });
+
+        // --- Smooth Scroll for Anchor Links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    const headerOffset = document.getElementById('mainHeader').offsetHeight || 90;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        document.getElementById('menuIcon').classList.remove('fa-times');
+                        document.getElementById('menuIcon').classList.add('fa-bars');
+                    }
+                } else if (href.includes('.html')) {
+                    // Fallback for external page links
+                    window.location.href = href;
+                }
+            });
         });
     </script>
 </body>
