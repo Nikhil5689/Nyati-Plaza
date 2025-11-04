@@ -102,6 +102,9 @@
             right: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+            /* Added padding for consistency */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
         
         .sticky-header.scrolled {
@@ -245,12 +248,12 @@
             display: flex;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none;
+            scrollbar-width: none; /* Firefox */
             gap: 24px;
         }
         
         .carousel-container::-webkit-scrollbar {
-            display: none;
+            display: none; /* Safari and Chrome */
         }
         
         .card-tilt {
@@ -314,7 +317,8 @@
         }
         
         .counter {
-            font-size: 3.5rem;
+            /* Responsive font size */
+            font-size: 2.5rem; /* 4xl */
             font-weight: 900;
             color: white;
             text-shadow: 0 0 20px rgba(229, 178, 0, 0.3);
@@ -336,7 +340,7 @@
         .gallery-item img {
             display: block;
             width: 100%;
-            height: auto;
+            height: 100%; /* Changed from auto for grid consistency */
             object-fit: cover;
             transition: transform 0.3s ease;
         }
@@ -449,6 +453,12 @@
         }
 
         /* --- Responsive Overrides --- */
+        @media (min-width: 640px) {
+            .counter {
+                font-size: 3.5rem; /* 6xl */
+            }
+        }
+
         @media (max-width: 1023px) {
              /* Sticky header padding on scroll */
             .sticky-header.scrolled {
@@ -468,10 +478,7 @@
                 grid-row: span 1;
             }
             
-            /* Counter font size */
-            .counter {
-                font-size: 2.5rem;
-            }
+            /* Counter font size already set */
             
             .gallery-grid-container {
                 grid-template-columns: 1fr;
@@ -506,106 +513,82 @@
 
     <!-- Header -->
   <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
-  <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
-    <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <div class="flex items-center space-x-3 flex-shrink-0">
-        <div class="w-36 md:w-40 flex items-center justify-center">
-          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
+      <div class="container mx-auto px-4 md:px-8"> <!-- Removed py-5 md:py-6, handled by style tag -->
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3 flex-shrink-0">
+            <div class="w-36 md:w-40 flex items-center justify-center">
+              <!-- UPDATED to .webp -->
+              <img src="assets/logos/65.webp" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" onerror="this.src='https://placehold.co/160x80/f1f5f9/002F67?text=Nyati+Plaza'">
+            </div>
+          </div>
+    
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
+            <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition active">Home</a> <!-- Set as active -->
+            <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
+            <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Dine</a>
+            <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
+            <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
+            <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
+          </nav>
+    
+          <!-- Header Buttons & Mobile Toggle -->
+          <div class="flex items-center space-x-3 sm:space-x-5">
+            <button class="text-[#002F67] hover:text-[#E5B200] transition">
+              <i class="fas fa-search text-lg md:text-xl"></i>
+            </button>
+            <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
+              <i class="fas fa-bars" id="menuIcon"></i>
+            </button>
+          </div>
         </div>
       </div>
-
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-8 xl:space-x-12 font-medium">
-        <a href="index.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Home</a>
-        <a href="brands.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Brands</a>
-        <a href="dine.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Dine</a>
-        <a href="entertainment.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Entertainment</a>
-        <a href="gallery.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Gallery</a>
-        <a href="visitnyati.html" class="nav-link text-[#002F67] hover:text-[#E5B200] transition">Visit Nyati</a>
-      </nav>
-
-      <!-- Header Buttons & Mobile Toggle -->
-      <div class="flex items-center space-x-3 sm:space-x-5">
-        <button class="text-[#002F67] hover:text-[#E5B200] transition">
-          <i class="fas fa-search text-lg md:text-xl"></i>
-        </button>
-        <button class="hidden sm:block bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
-        <!-- Mobile Menu Button -->
-        <button class="lg:hidden text-[#002F67] text-3xl" id="mobileMenuBtn" aria-label="Toggle menu">
-          <i class="fas fa-bars" id="menuIcon"></i>
-        </button>
+    
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
+        <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
+          <a href="index.html" class="nav-link block hover:text-[#E5B200] transition active">Home</a>
+          <a href="brands.html" class="nav-link block hover:text-[#E5B200] transition">Brands</a>
+          <a href="dine.html" class="nav-link block hover:text-[#E5B200] transition">Dine</a>
+          <a href="entertainment.html" class="nav-link block hover:text-[#E5B200] transition">Entertainment</a>
+          <a href="gallery.html" class="nav-link block hover:text-[#E5B200] transition">Gallery</a>
+          <a href="visitnyati.html" class="nav-link block hover:text-[#E5B200] transition">Visit Nyati</a>
+          <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
+        </nav>
       </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
-    <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
-      <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
-      <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
-      <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
-      <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
-      <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
-      <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
-      <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
-    </nav>
-  </div>
-</header>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.getElementById('menuIcon');
-
-    if (mobileMenuBtn && mobileMenu && menuIcon) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-      });
-    }
-
-    // ✅ Fix scrolling issue by ensuring no overflow restrictions remain
-    document.body.style.overflowY = 'auto';
-    document.documentElement.style.overflowY = 'auto';
-    document.body.style.height = 'auto';
-    document.documentElement.style.height = 'auto';
-
-    // ✅ Add spacing below navbar so content is visible and scrollable
-    const header = document.getElementById('mainHeader');
-    if (header) {
-      const headerHeight = header.offsetHeight;
-      document.body.style.paddingTop = headerHeight + 'px';
-    }
-  });
-</script>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative flex items-center bg-gradient-to-b from-white to-blue-50 pt-24 pb-12 lg:pt-0 lg:pb-0" style="margin-top: 80px; padding-top: 0; min-height: calc(100vh - 88px);">
+    <!-- Removed inline style margin-top, handled by body padding -->
+    <section id="home" class="relative flex items-center bg-gradient-to-b from-white to-blue-50 pt-12 pb-12 lg:pt-0 lg:pb-0" style="padding-top: 0; min-height: calc(100vh - 88px);">
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
     
           <!-- Left: Hero Carousel -->
-          <div class="lg:col-span-3">
+          <div class="lg:col-span-3 order-1 lg:order-1">
             <!-- Responsive height for carousel -->
             <div class="hero-carousel rounded-3xl overflow-hidden shadow-2xl border-4 border-[#002F67]/20 h-[400px] sm:h-[500px] lg:h-[600px]">
               <div class="hero-slide active">
-                <img src="assets/IMAGES/IMG_3227.JPG" alt="City Pride Theatre" class="w-full h-full object-cover">
+                <!-- UPDATED to .webp -->
+                <img src="assets/IMAGES/IMG_3227.webp" alt="City Pride Theatre" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/002F67/ffffff?text=Theatre'">
               </div>
               <div class="hero-slide">
-                <img src="assets/shops_photo/DSC00307.JPG" alt="Fashion" class="w-full h-full object-cover">
+                <!-- UPDATED to .webp -->
+                <img src="assets/shops_photo/DSC00307.webp" alt="Fashion" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/002F67/ffffff?text=Fashion'">
               </div>
               <div class="hero-slide">
-                <img src="assets/plazainternal/DSC04998.JPG" alt="Dining" class="w-full h-full object-cover">
+                <!-- UPDATED to .webp -->
+                <img src="assets/plazainternal/DSC04998.webp" alt="Dining" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/002F67/ffffff?text=Dining'">
               </div>
             </div>
           </div>
     
           <!-- Right: Hero Content -->
           <!-- Responsive padding -->
-          <div class="lg:col-span-2 bg-white p-6 md:p-12 rounded-3xl shadow-xl border-4 border-[#002F67]/20 relative transition-all duration-500">
+          <div class="lg:col-span-2 order-2 lg:order-2 bg-white p-6 md:p-12 rounded-3xl shadow-xl border-4 border-[#002F67]/20 relative transition-all duration-500">
     
             <!-- Main headline that changes dynamically -->
             <!-- Responsive typography -->
@@ -624,9 +607,7 @@
               <button class="btn-gradient w-full sm:w-auto" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'});">
                 <i class="fas fa-compass mr-2"></i>Explore the Mall
               </button>
-              <button class="btn-outline w-full sm:w-auto">
-                <i class="fas fa-store mr-2"></i>Lease a Space
-              </button>
+             
             </div>
     
             <!-- Stats -->
@@ -786,38 +767,44 @@
             <!-- Responsive grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <div class="brand-tile">
-                    <img src=" assets/shops_photo/DSC00285.JPG " alt="H&M" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="assets/shops_photo/mudrika.jpg" alt="Mudrika" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Mudrika'">
                     <h3 class="text-center font-semibold text-gray-800">Mudrika Womens Ethnic Wear</h3>
                 </div>
                 
                 <div class="brand-tile">
-                    <img src="assets/shops_photo/reliance.jpg" alt="Reliance Fashion World" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="assets/shops_photo/reliance.webp" alt="Reliance Fashion World" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Reliance'">
                     <h3 class="text-center font-semibold text-gray-800">Reliance Fashion World</h3>
                 </div>
                 
                 <div class="brand-tile">
-                    <img src="assets/shops_photo/titanwatch.jpg" alt="Nike" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="assets/shops_photo/titanwatch.webp" alt="Titan" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Titan'">
                     <h3 class="text-center font-semibold text-gray-800">Titan</h3>
                 </div>
                 
                 <div class="brand-tile">
-                    <img src=" assets/shops_photo/mamaearth.jpg" alt="Adidas" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="assets/shops_photo/mamaearth.webp" alt="MamaEarth" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=MamaEarth'">
                     <h3 class="text-center font-semibold text-gray-800">MamaEarth</h3>
                 </div>
                 
                 <div class="brand-tile">
-                    <img src="assets/shops_photo/indianterrain.jpg" alt="Louis Vuitton" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="assets/shops_photo/indianterrain.webp" alt="Indian Terrain" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Indian+Terrain'">
                     <h3 class="text-center font-semibold text-gray-800">Indian Terrain</h3>
                 </div>
                 
                 <div class="brand-tile">
-                    <img src="/assets/shops_photo/stylox menas apparel.jpg" alt="Sephora" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="/assets/shops_photo/stylox menas apparel.webp" alt="Stylox" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Stylox'">
                     <h3 class="text-center font-semibold text-gray-800">Stylox Mens Apparels</h3>
                 </div>
                 
                 <!-- Responsive span for special tile -->
                 <div class="brand-tile gradient-bg flex items-center justify-center sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[200px] lg:min-h-0">
-                    <div class="text-center text-black">
+                    <div class="text-center text-white"> <!-- Changed text to white -->
                         <i class="fas fa-shopping-bag text-4xl sm:text-6xl mb-4"></i>
                         <h3 class="text-2xl sm:text-3xl font-black mb-2">Shop Leading Labels</h3>
                         <p class="text-base sm:text-lg">250+ Premium Brands</p>
@@ -825,12 +812,14 @@
                 </div>
                 
                 <div class="brand-tile">
-                    <img src="/assets/shops_photo/LENSKART.jpg " alt="Lenskart" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="/assets/shops_photo/LENSKART.webp" alt="Lenskart" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Lenskart'">
                     <h3 class="text-center font-semibold text-gray-800">Lenskart</h3>
                 </div>
                 
                 <div class="brand-tile">
-                    <img src="/assets/shops_photo/MINISO.jpg" alt="Gucci" class="w-full h-24 object-contain mb-4">
+                    <!-- UPDATED to .webp -->
+                    <img src="/assets/shops_photo/MINISO.webp" alt="Miniso" class="w-full h-24 object-contain mb-4" onerror="this.src='https://placehold.co/300x100/f1f5f9/64748b?text=Miniso'">
                     <h3 class="text-center font-semibold text-gray-800">Miniso</h3>
                 </div>
             </div>
@@ -845,7 +834,7 @@
 
     <!-- Upcoming Brands -->
    
-<section class="relative overflow-hidden bg-gradient-to-r from-[#002F67] via-[#003F88] to-[#005EA6] py-16 sm:py-24">
+<section id="offers" class="relative overflow-hidden bg-gradient-to-r from-[#002F67] via-[#003F88] to-[#005EA6] py-16 sm:py-24">
   <div class="container mx-auto px-6 sm:px-8">
     <div class="text-center mb-12 sm:mb-16">
       <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 font-[PlayfairDisplay] tracking-wide drop-shadow-lg">
@@ -866,42 +855,48 @@
           <!-- CARD TEMPLATE -->
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="/assets/shops_photo/BLUESTONE.jpg" alt="Bluestone" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="/assets/shops_photo/BLUESTONE.webp" alt="Bluestone" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Bluestone'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Bluestone</h3>
             <p class="text-gray-600">Fine Jewellery</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="/assets/shops_photo/baggit.jpg" alt="Baggit" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="/assets/shops_photo/baggit.webp" alt="Baggit" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Baggit'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Baggit</h3>
             <p class="text-gray-600">Premium Bags</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="/assets/shops_photo/reliancenew.jpg" alt="H&M Home" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="/assets/shops_photo/reliancenew.webp" alt="Reliance Fashion" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Reliance'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Reliance Fashion World</h3>
             <p class="text-gray-600">Fashion</p>
           </div>
           
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="assets/shops_photo/cuddleskids.jpg" alt="Cuddles Kids Wear" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="assets/shops_photo/cuddleskids.webp" alt="Cuddles Kids Wear" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Cuddles'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Cuddles Kids Wear</h3>
             <p class="text-gray-600">Kids Cloth</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="assets/shops_photo/leecopeer.jpg" alt="Lee Cooper" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="assets/shops_photo/leecopeer.webp" alt="Lee Cooper" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Lee+Cooper'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]"> Lee Cooper </h3>
             <p class="text-gray-600">Premium Cloth</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="assets/shops_photo/ajmal perfumes.jpg" alt="Ajmal Perfumes" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="assets/shops_photo/ajmal perfumes.webp" alt="Ajmal Perfumes" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Ajmal'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Ajmal</h3>
             <p class="text-gray-600">Perfumes</p>
           </div>
@@ -911,42 +906,48 @@
         <div class="flex space-x-6 sm:space-x-8">
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="/assets/shops_photo/BLUESTONE.jpg" alt="Bluestone" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="/assets/shops_photo/BLUESTONE.webp" alt="Bluestone" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Bluestone'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Bluestone</h3>
             <p class="text-gray-600">Fine Jewellery</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="/assets/shops_photo/baggit.jpg" alt="Baggit" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="/assets/shops_photo/baggit.webp" alt="Baggit" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Baggit'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Baggit</h3>
             <p class="text-gray-600">Premium Bags</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="/assets/shops_photo/reliancenew.jpg" alt="H&M Home" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="/assets/shops_photo/reliancenew.webp" alt="Reliance Fashion" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Reliance'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Reliance Fashion World</h3>
             <p class="text-gray-600">Fashion</p>
           </div>
           
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="assets/shops_photo/cuddleskids.jpg" alt="Cuddles Kids Wear" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="assets/shops_photo/cuddleskids.webp" alt="Cuddles Kids Wear" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Cuddles'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Cuddles Kids Wear</h3>
             <p class="text-gray-600">Kids Cloth</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="assets/shops_photo/leecopeer.jpg" alt="Lee Cooper" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="assets/shops_photo/leecopeer.webp" alt="Lee Cooper" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Lee+Cooper'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]"> Lee Cooper </h3>
             <p class="text-gray-600">Premium Cloth</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl flex-shrink-0 w-72 sm:w-80 hover:scale-105 transition-transform duration-500">
             <span class="inline-block px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-full mb-4">NOW OPEN</span>
-            <img src="assets/shops_photo/ajmal perfumes.jpg" alt="Ajmal Perfumes" class="w-full h-32 object-contain mb-4">
+            <!-- UPDATED to .webp -->
+            <img src="assets/shops_photo/ajmal perfumes.webp" alt="Ajmal Perfumes" class="w-full h-32 object-contain mb-4" onerror="this.src='https://placehold.co/300x130/f1f5f9/64748b?text=Ajmal'">
             <h3 class="text-xl font-bold text-[#002F67] mb-2 font-[Poppins]">Ajmal</h3>
             <p class="text-gray-600">Perfumes</p>
           </div>
@@ -985,7 +986,8 @@
         <!-- Card -->
         <!-- Responsive card width -->
         <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/purnabrahma.jpg" alt="Cafe" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/purnabrahma.webp" alt="Purnabrahma" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=Purnabrahma'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Purnabrahma</h3>
             <div class="flex items-center justify-between">
@@ -996,7 +998,8 @@
         </div>
 
          <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/taikenpanasiancuisuine.jpg" alt="Taiken Pan Asian Cuisine" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/taikenpanasiancuisuine.webp" alt="Taiken Pan Asian Cuisine" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=Taiken'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Taiken Pan Asian Cuisine</h3>
             <div class="flex items-center justify-between">
@@ -1007,7 +1010,8 @@
         </div>
 
         <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/candyworld.jpg" alt="Candy World" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/candyworld.webp" alt="Candy World" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=Candy+World'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Candy World</h3>
             <div class="flex items-center justify-between">
@@ -1018,7 +1022,8 @@
         </div>
 
         <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/havmore.jpg" alt="Havmor Ice Cream" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/havmore.webp" alt="Havmor Ice Cream" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=Havmor'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Havmor Ice Cream</h3>
             <div class="flex items-center justify-between">
@@ -1029,7 +1034,8 @@
         </div>
 
         <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/waffleworld.jpg" alt="Waffle world" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/waffleworld.webp" alt="Waffle world" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=Waffle+World'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Waffle World</h3>
             <div class="flex items-center justify-between">
@@ -1040,7 +1046,8 @@
         </div>
         
           <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/beyondtemptation.jpg" alt="Beyond Temptations" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/beyondtemptation.webp" alt="Beyond Temptations" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=Beyond+Temptations'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Beyond Temptations</h3>
             <div class="flex items-center justify-between">
@@ -1051,7 +1058,8 @@
         </div>
 
         <div class="flex-shrink-0 w-[85vw] sm:w-80 md:w-96 snap-start border-4 border-[#002F67]/30 rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/shops_photo/mcdonalds.jpg" alt="Starbucks" class="w-full h-48 sm:h-56 object-cover">
+          <!-- UPDATED to .webp -->
+          <img src="assets/shops_photo/mcdonalds.webp" alt="McDonalds" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://placehold.co/400x220/f1f5f9/64748b?text=McDonalds'">
           <div class="p-4 sm:p-6">
             <h3 class="text-xl sm:text-2xl font-bold mb-2 text-[#002F67]">Mcdonalds</h3>
             <div class="flex items-center justify-between">
@@ -1164,13 +1172,13 @@
     <!-- Responsive grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
       <!-- Left Image -->
-      <div class="relative group">
+      <div class="relative group order-2 lg:order-1">
         <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop" alt="Luxury Jewellery" class="rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.4)] transform transition-transform duration-700 group-hover:scale-105">
         <div class="absolute inset-0 bg-gradient-to-t from-[#001F4D]/70 to-transparent rounded-3xl"></div>
       </div>
 
       <!-- Right Content -->
-      <div class="text-white">
+      <div class="text-white order-1 lg:order-2">
         <h3 class="text-3xl sm:text-4xl font-extrabold mb-6 font-[PlayfairDisplay] text-[#E5B200]">
           Discover Exquisite Collections
         </h3>
@@ -1227,7 +1235,7 @@
     <!-- Responsive grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 sm:mb-16 items-center">
       <!-- Video Section -->
-      <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#002F67]/30 group">
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#002F67]/30 group order-1">
         <iframe
           class="w-full h-[300px] sm:h-[400px] lg:h-[460px] transition-transform duration-500 group-hover:scale-105"
           src="https://www.youtube.com/embed/fG0H-yVkQYA?autoplay=1&mute=1&start=0&controls=1&loop=1&playlist=fG0H-yVkQYA"
@@ -1240,18 +1248,22 @@
       </div>
 
       <!-- Gallery Grid -->
-      <div class="grid grid-cols-2 gap-4 sm:gap-6">
-        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/plazainternal/DSC04978.JPG" alt="Gallery" class="w-full h-full object-cover">
+      <div class="grid grid-cols-2 gap-4 sm:gap-6 order-2">
+        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2 h-[150px] sm:h-[220px]">
+          <!-- UPDATED to .webp -->
+          <img src="assets/plazainternal/DSC04978.webp" alt="Gallery" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x300/f1f5f9/64748b?text=Gallery+1'">
         </div>
-        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/plazainternal/DSC04962.JPG" alt="Gallery" class="w-full h-full object-cover">
+        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2 h-[150px] sm:h-[220px]">
+          <!-- UPDATED to .webp -->
+          <img src="assets/plazainternal/DSC04962.webp" alt="Gallery" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x300/f1f5f9/64748b?text=Gallery+2'">
         </div>
-        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/plazainternal/DJI_20250318192639_0042_D_01.JPG" alt="Gallery" class="w-full h-full object-cover">
+        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2 h-[150px] sm:h-[220px]">
+          <!-- UPDATED to .webp -->
+          <img src="assets/plazainternal/DJI_20250318192639_0042_D_01.webp" alt="Gallery" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x300/f1f5f9/64748b?text=Gallery+3'">
         </div>
-        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2">
-          <img src="assets/plazainternal/DSC04998.JPG" alt="Gallery" class="w-full h-full object-cover">
+        <div class="gallery-item rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-4 border-[#002F67]/20 transition-transform duration-300 hover:-translate-y-2 h-[150px] sm:h-[220px]">
+          <!-- UPDATED to .webp -->
+          <img src="assets/plazainternal/DSC04998.webp" alt="Gallery" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x300/f1f5f9/64748b?text=Gallery+4'">
         </div>
       </div>
     </div>
@@ -1323,6 +1335,7 @@
 
 <style>
   .counter {
+    /* Responsive font size handled in main style block */
     text-shadow: 0 0 20px rgba(229, 178, 0, 0.3);
   }
 </style>
@@ -1388,7 +1401,7 @@
         <div class="container mx-auto px-6">
             <!-- Responsive grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="text-white">
+                <div class="text-white order-2 lg:order-1">
                     <h2 class="text-3xl sm:text-5xl font-black mb-6">Open at Nyati Plaza</h2>
                     <p class="text-xl sm:text-2xl mb-8">Lease a Premium Space</p>
                     
@@ -1419,7 +1432,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl order-1 lg:order-2">
                     <h3 class="text-2xl sm:text-3xl font-black mb-6">Get in Touch</h3>
                     <form class="space-y-4">
                         <div>
@@ -1453,13 +1466,13 @@
             
             <!-- Responsive grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
-                <div class="rounded-3xl overflow-hidden shadow-xl">
+                <div class="rounded-3xl overflow-hidden shadow-xl order-1">
                    <!-- Responsive map -->
                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15129.906628550489!2d73.91788350090106!3d18.552537270752943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c3cd0134647d%3A0xbff4f7d437e3d3d0!2sNYATI%20PLAZA!5e0!3m2!1sen!2sin!4v1761592427739!5m2!1sen!2sin" class="w-full h-[400px] sm:h-[450px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 
                 <!-- Responsive grid for flip cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 order-2">
                     <!-- Responsive height for flip cards -->
                     <div class="flip-card h-[150px] sm:h-[200px]">
                         <div class="flip-card-inner">
@@ -1533,7 +1546,8 @@
       <!-- Brand / About -->
       <div>
         <div class="flex items-center space-x-3 mb-5">
-          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-14 object-contain" />
+          <!-- UPDATED to .webp -->
+          <img src="assets/logos/65.webp" alt="Nyati Plaza Logo" class="h-14 object-contain" onerror="this.src='https://placehold.co/160x80/f1f5f9/002F67?text=Nyati+Plaza'">
           <h3 class="text-2xl font-bold tracking-wide">Nyati Plaza</h3>
         </div>
         <p class="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -1613,13 +1627,15 @@
     <script>
         // Header scroll effect
         const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        if (header) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
 
        
         // Counter animation
@@ -1648,18 +1664,23 @@
 
         // Intersection Observer for counters
         const counters = document.querySelectorAll('.counter');
-        const counterObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+        if ("IntersectionObserver" in window) {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
 
-        counters.forEach(counter => {
-            counterObserver.observe(counter);
-        });
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+        } else {
+            // Fallback for older browsers
+            counters.forEach(counter => animateCounter(counter));
+        }
 
         // --- New Mobile Menu JavaScript ---
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1680,7 +1701,7 @@
             });
 
             // Close mobile menu when a link is clicked
-            document.querySelectorAll('#mobileMenu a').forEach(link => {
+            document.querySelectorAll('#mobileMenu a, #mobileMenu button').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
                     menuIcon.classList.remove('fa-times');
@@ -1689,12 +1710,35 @@
             });
         }
 
+        // --- Body Padding for Sticky Header ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const headerEl = document.getElementById('mainHeader');
+            if (headerEl) {
+                const setBodyPadding = () => {
+                    const headerHeight = headerEl.offsetHeight;
+                    document.body.style.paddingTop = headerHeight + 'px';
+                };
+                setBodyPadding();
+                window.addEventListener('resize', setBodyPadding);
+            }
+        });
+
+
         // Smooth scroll for navigation (desktop and mobile)
         // Updated to handle both mobile and footer links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                // Check if the link is to a different page
+                if (this.hostname !== window.location.hostname || this.pathname !== window.location.pathname) {
+                    // It's a link to another page (e.g., brands.html), let the browser handle it
+                    return;
+                }
+
                 e.preventDefault();
-                const href = this.getAttribute('href');
+                let href = this.getAttribute('href');
+                if (href.includes('#')) {
+                    href = '#' + href.split('#')[1]; // Get only the hash part
+                }
                 
                 // Special case for home link
                 if (href === "#home" || href === "index.html") {
@@ -1713,7 +1757,7 @@
 
                 const target = document.querySelector(href);
                 if (target) {
-                    const headerOffset = 90; // Height of sticky header
+                    const headerOffset = document.getElementById('mainHeader').offsetHeight || 90; // Height of sticky header
                     const elementPosition = target.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -1735,3 +1779,4 @@
     </script>
 </body>
 </html>
+

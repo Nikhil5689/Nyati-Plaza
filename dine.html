@@ -231,14 +231,15 @@
 </head>
 <body class="bg-white text-gray-900">
 
-    <!-- Header - UNCHANGED AS REQUESTED -->
+    <!-- Header - UNCHANGED AS REQUESTED (except .webp) -->
     <header class="sticky-header glass-header bg-white/95 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md border-b border-gray-200" id="mainHeader">
-      <div class="container mx-auto px-4 md:px-8 py-5 md:py-6">
+      <div class="container mx-auto px-4 md:px-8"> <!-- Removed py-5 md:py-6, handled by style tag -->
         <div class="flex items-center justify-between">
           <!-- Logo -->
           <div class="flex items-center space-x-3 flex-shrink-0">
             <div class="w-36 md:w-40 flex items-center justify-center">
-              <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" />
+              <!-- UPDATED to .webp -->
+              <img src="assets/logos/65.webp" alt="Nyati Plaza Logo" class="h-16 md:h-20 object-contain" onerror="this.src='https://placehold.co/160x80/f1f5f9/002F67?text=Nyati+Plaza'">
             </div>
           </div>
     
@@ -269,12 +270,12 @@
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="lg:hidden hidden bg-white/95 text-[#002F67] transition-all duration-300 shadow-md">
         <nav class="flex flex-col space-y-3 px-6 py-5 border-t border-gray-200 text-lg font-medium">
-          <a href="index.html" class="block hover:text-[#E5B200] transition">Home</a>
-          <a href="brands.html" class="block hover:text-[#E5B200] transition">Brands</a>
-          <a href="dine.html" class="block hover:text-[#E5B200] transition">Dine</a>
-          <a href="entertainment.html" class="block hover:text-[#E5B200] transition">Entertainment</a>
-          <a href="gallery.html" class="block hover:text-[#E5B200] transition">Gallery</a>
-          <a href="visitnyati.html" class="block hover:text-[#E5B200] transition">Visit Nyati</a>
+          <a href="index.html" class="nav-link block hover:text-[#E5B200] transition">Home</a>
+          <a href="brands.html" class="nav-link block hover:text-[#E5B200] transition">Brands</a>
+          <a href="dine.html" class="nav-link block hover:text-[#E5B200] transition active">Dine</a>
+          <a href="entertainment.html" class="nav-link block hover:text-[#E5B200] transition">Entertainment</a>
+          <a href="gallery.html" class="nav-link block hover:text-[#E5B200] transition">Gallery</a>
+          <a href="visitnyati.html" class="nav-link block hover:text-[#E5B200] transition">Visit Nyati</a>
           <button class="mt-4 bg-[#002F67] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#E5B200] hover:text-[#002F67] transition">Lease Space</button>
         </nav>
       </div>
@@ -323,7 +324,8 @@
 
       <!-- ================= GROUND FLOOR ================= -->
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/14.png" alt="Si Nonna's" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Si+Nonna%27s'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/14.webp" alt="Si Nonna's" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Si+Nonna%27s'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Si Nonna’s</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -335,7 +337,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/27.png" alt="Candy World" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Candy+World'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/27.webp" alt="Candy World" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Candy+World'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Candy World</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -347,7 +350,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/29.png" alt="Nick Micks" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Nick+Micks'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/29.webp" alt="Nick Micks" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Nick+Micks'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Nick Micks</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -359,7 +363,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/43.png" alt="Tea Post" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Tea+Post'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/43.webp" alt="Tea Post" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Tea+Post'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Tea Post</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -371,7 +376,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/45.png" alt="Havmor Ice Cream" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Havmor'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/45.webp" alt="Havmor Ice Cream" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Havmor'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Havmor Ice Cream</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -383,7 +389,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/25.png" alt="Crispy Crunch" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Crispy+Crunch'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/25.webp" alt="Crispy Crunch" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Crispy+Crunch'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Crispy Crunch</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -407,7 +414,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/34.png" alt="Waffle World" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Waffle+World'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/34.webp" alt="Waffle World" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Waffle+World'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Waffle World</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -419,7 +427,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/20.png" alt="Caffee#onthego" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Caffee%23onthego'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/20.webp" alt="Caffee#onthego" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Caffee%23onthego'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Caffee#onthego</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -431,7 +440,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/64.png" alt="TAIKEN" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=TAIKEN'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/64.webp" alt="TAIKEN" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=TAIKEN'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">TAIKEN</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -443,7 +453,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/44.png" alt="Purnabrahma" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Purnabrahma'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/44.webp" alt="Purnabrahma" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Purnabrahma'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Purnabrahma</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -455,7 +466,8 @@
       </div>
 
       <div class="restaurant-card" data-category="ground">
-        <img src="assets/logos/62.png" alt="McDonald's" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=McDonald%27s'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/62.webp" alt="McDonald's" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=McDonald%27s'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">McDonald’s</h3>
           <p class="text-gray-600 mb-3">Ground Floor</p>
@@ -480,7 +492,8 @@
       </div>
 
       <div class="restaurant-card" data-category="first">
-        <img src="assets/logos/8.png" alt="Elix Lounge" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Elix+Lounge'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/8.webp" alt="Elix Lounge" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Elix+Lounge'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Elix Lounge</h3>
           <p class="text-gray-600 mb-3">1st Floor</p>
@@ -495,7 +508,8 @@
 
       <!-- ================= 2ND FLOOR ================= -->
       <div class="restaurant-card" data-category="second">
-        <img src="assets/logos/13.png" alt="Tealogy" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Tealogy'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/13.webp" alt="Tealogy" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Tealogy'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Tealogy</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -507,7 +521,8 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="assets/logos/22.png" alt="Fluffy Egg" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Fluffy+Egg'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/22.webp" alt="Fluffy Egg" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Fluffy+Egg'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Fluffy Egg</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -519,7 +534,8 @@
       </div>
 
       <div class="restaurant-card" data-category="second">
-        <img src="assets/logos/18.png" alt="Beyond Temptations" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Beyond+Temptations'">
+        <!-- UPDATED to .webp -->
+        <img src="assets/logos/18.webp" alt="Beyond Temptations" onerror="this.src='https://placehold.co/400x200/f1f5f9/64748b?text=Beyond+Temptations'">
         <div class="restaurant-card-content">
           <h3 class="text-2xl font-bold mb-2 text-[--primary]">Beyond Temptations</h3>
           <p class="text-gray-600 mb-3">2nd Floor</p>
@@ -575,11 +591,11 @@
         <div class="container mx-auto px-6">
             <!-- Responsive grid: stacks on mobile, 2-col on md+ -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-                <!-- Image column (order-1 on mobile, order-2 on md) -->
+                <!-- Image column (order-2 on mobile, order-1 on md) -->
                 <div class="order-2 md:order-1">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=500&fit=crop" alt="Dining Experience" class="rounded-2xl shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=500&fit=crop" alt="Dining Experience" class="rounded-2xl shadow-xl w-full">
                 </div>
-                <!-- Content column (order-2 on mobile, order-1 on md) -->
+                <!-- Content column (order-1 on mobile, order-2 on md) -->
                 <div class="order-1 md:order-2">
                     <!-- Responsive typography -->
                     <h2 class="text-3xl sm:text-5xl font-black mb-6 text-[--primary]">Dining Redefined</h2>
@@ -622,7 +638,7 @@
         </div>
     </section>
 
-    <!-- Footer - UNCHANGED AS REQUESTED -->
+    <!-- Footer - UNCHANGED AS REQUESTED (except .webp) -->
    <footer class="bg-gradient-to-b from-[#001F4D] to-[#002F67] text-white pt-16 pb-10 relative overflow-hidden">
   <div class="container mx-auto px-6 relative z-10">
     <!-- Top Section -->
@@ -630,7 +646,8 @@
       <!-- Brand / About -->
       <div>
         <div class="flex items-center space-x-3 mb-5">
-          <img src="assets/logos/65.png" alt="Nyati Plaza Logo" class="h-14 object-contain" />
+          <!-- UPDATED to .webp -->
+          <img src="assets/logos/65.webp" alt="Nyati Plaza Logo" class="h-14 object-contain" onerror="this.src='https://placehold.co/160x80/f1f5f9/002F67?text=Nyati+Plaza'">
           <h3 class="text-2xl font-bold tracking-wide">Nyati Plaza</h3>
         </div>
         <p class="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -741,7 +758,9 @@
             
             // Update button active state
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+            if(button) {
+                button.classList.add('active');
+            }
         }
 
         // --- Header Scroll Effect ---
@@ -780,10 +799,12 @@
             // Add spacing below navbar so content is visible and scrollable
             const headerEl = document.getElementById('mainHeader');
             if (headerEl) {
-                const headerHeight = headerEl.offsetHeight;
-                // Use a wrapper or the first content section if body padding causes issues
-                // For this layout, padding the body is correct.
-                document.body.style.paddingTop = headerHeight + 'px';
+                const setBodyPadding = () => {
+                    const headerHeight = headerEl.offsetHeight;
+                    document.body.style.paddingTop = headerHeight + 'px';
+                };
+                setBodyPadding();
+                window.addEventListener('resize', setBodyPadding);
 
                 // Also update hero margin-top just in case (optional, but safer)
                 const hero = document.querySelector('.hero-section');
@@ -826,3 +847,4 @@
     </script>
 </body>
 </html>
+
